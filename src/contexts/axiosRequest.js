@@ -1,3 +1,4 @@
 export const requests = {
-    fetchScream: '/scream'
+    fetchScream: '/scream',
+    fetchLogin: '/login'
 }
