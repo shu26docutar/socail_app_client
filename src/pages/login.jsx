@@ -1,54 +1,30 @@
 import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types'
-import { Typography, Grid, TextField, Button, CircularProgress } from '@mui/material';
+import { Typography, Grid, TextField, Button, CircularProgress, useTheme } from '@mui/material';
 import { Link, useNavigate } from "react-router-dom";
 import AppIcon from '../images/icon.png'
 import axios from '../contexts/axios';
 import { requests } from '../contexts/axiosRequest';
 
-const styles = {
-  form: {
-    textAlign: 'center'
-  },
-  image: {
-    margin: '20px auto 20px auto'
-  },
-  pageTitle: {
-    margin: '10px auto 10px auto'
-  },
-  textField: {
-    margin: '10px auto 10px auto',
-  },
-  button: {
-    marginTop: 20,
-    position: 'relative'
-  },
-  customError: {
-    color: 'red',
-    fontSize: '0.8rem',
-    marginTop: 10
-  },
-  progress: {
-    position: 'absolute'
-  }
-}
 
 export const Login = () => {
-  const navigation = useNavigate()
-
+  const theme = useTheme()
   const email = useRef()
   const password = useRef()
 
   const [ loading, setLoading ] = useState(false)
-  const [ error, setError ] = useState()
-  const [ emailError, setEmailError ] = useState()
-  const [ passwordError, setPasswordError ] = useState()
+  const [ error, setError ] = useState({
+    email: '',
+    password: '',
+    general: ''
+  })
+
+  const navigation = useNavigate()
 
   function handleSubmit(e) {
     e.preventDefault()
 
       setLoading(true)
-      setError('')
 
       const userData = {
         email: email.current.value,
@@ -58,12 +34,11 @@ export const Login = () => {
       axios.post(requests.fetchLogin, userData)
         .then((res) => {
           console.log('成功', res.data)
+          localStorage.setItem('FBIdToken', `Token ${res.data.token}`)
           navigation('/')
         })
-        .catch((error) => {          
-          setError(error.response.data.general)
-          setEmailError(error.response.data.email)
-          setPasswordError(error.response.data.password)
+        .catch((error) => {        
+          setError(error.response.data)
         })
         .finally(() => {
           setLoading(false)
@@ -72,11 +47,11 @@ export const Login = () => {
 
   return (
     <>
-      <Grid container style={styles.form}>
+      <Grid container style={theme.form}>
         <Grid item sm />
         <Grid item sm >
-          <img src={AppIcon} alt='monkey' style={styles.image} />
-          <Typography variant="h2" style={styles.pageTitle}>
+          <img src={AppIcon} alt='monkey' style={theme.image} />
+          <Typography variant="h2" style={theme.pageTitle}>
             Login
           </Typography>
           <form noValidate onSubmit={handleSubmit}>
@@ -88,8 +63,8 @@ export const Login = () => {
               label='Email' 
               variant='standard'
               inputRef={email}
-              helperText={emailError}
-              error={emailError ? true: false}
+              helperText={error.email}
+              error={error.email ? true: false}
               fullWidth={true} />
 
             <TextField 
@@ -99,14 +74,14 @@ export const Login = () => {
               label='Password' 
               variant='standard'
               inputRef={password}
-              helperText={passwordError}
-              error={passwordError ? true: false}
-              style={styles.textField}
+              helperText={error.password}
+              error={error.password ? true: false}
+              style={theme.textField}
               fullWidth={true} />
 
-            {error && (
-              <Typography variant="body2" style={styles.customError}>
-                {error}
+            {error.general && (
+              <Typography variant="body2" style={theme.customError}>
+                {error.general}
               </Typography>
             )}
 
@@ -114,12 +89,12 @@ export const Login = () => {
               type='submit' 
               variant='contained' 
               color='primary' 
-              style={styles.button}
+              style={theme.button}
               disabled={loading}
             >
               Login
               {loading && 
-                <CircularProgress size={30} style={styles.progress} />
+                <CircularProgress size={30} style={theme.progress} />
               }
             </Button>
 

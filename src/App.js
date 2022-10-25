@@ -1,34 +1,33 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { ThemeProvider, createTheme, makeStyles } from '@mui/material/styles';
-
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import jwtDecode from 'jwt-decode'
+// import utillity
+import styleTheme from './utillity/theme'
+import AuthRoute from './utillity/AuthRoute'
 // import components
 import { Navbar } from './components/Navbar'
-
 // import page
 import { Home } from './pages/home'
-import { Login } from './pages/login'
+import { Login }  from './pages/login'
 import { Signup } from './pages/signup'
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      light: '#33c9dc',
-      main: '#00bcd4',
-      dark: '#008394',
-      contrastText: '#ffff'
-    },
-    secondary: {
-      light: '#ff6333',
-      main: '#ff3d00',
-      dark: '#d22a00',
-      contrastText: '#fff'
-    }
-  },
-  typography: {
-    usNextVariants: true
+const theme = createTheme(styleTheme)
+
+const token = localStorage.FBIdToken
+
+let authenticated
+if(token) {
+  const decodeToken = jwtDecode(token)
+  console.log(decodeToken)
+  
+  if(decodeToken.exp * 1000 < Date.now()) {
+    window.location.href = '/login'
+    authenticated = false
+  } else {
+    authenticated = true
   }
-})
+}
 
 function App() {
   return (
@@ -38,9 +37,15 @@ function App() {
         <Navbar />
           <div className='container'>
             <Routes>
+
+            <Route path="/" element={<AuthRoute authenticated={authenticated} />} >
               <Route path="/" element={<Home />} />
+            </Route>
+
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
+
+              
             </Routes>
           </div>
       </BrowserRouter>
