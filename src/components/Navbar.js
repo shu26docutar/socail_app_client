@@ -1,7 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-// import Material
 import { AppBar, Toolbar, Button } from '@mui/material';
 
 export const Navbar = () => {
@@ -17,4 +15,3 @@ export const Navbar = () => {
     </div>
   )
 }
-

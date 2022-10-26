@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Grid } from '@mui/material';
-
-// import contexts
 import axios from '../contexts/axios';
 import { requests } from '../contexts/axiosRequest';
-
 import Scream from '../components/Scream'
 
 export const Home = () => {
