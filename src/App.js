@@ -2,12 +2,9 @@ import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import jwtDecode from 'jwt-decode'
-// import utillity
 import styleTheme from './utillity/theme'
 import AuthRoute from './utillity/AuthRoute'
-// import components
 import { Navbar } from './components/Navbar'
-// import page
 import { Home } from './pages/home'
 import { Login }  from './pages/login'
 import { Signup } from './pages/signup'
@@ -15,8 +12,8 @@ import { Signup } from './pages/signup'
 const theme = createTheme(styleTheme)
 
 const token = localStorage.FBIdToken
-
 let authenticated
+
 if(token) {
   const decodeToken = jwtDecode(token)
   console.log(decodeToken)
@@ -37,15 +34,12 @@ function App() {
         <Navbar />
           <div className='container'>
             <Routes>
-
-            <Route path="/" element={<AuthRoute authenticated={authenticated} />} >
               <Route path="/" element={<Home />} />
-            </Route>
 
-              <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<Signup />} />
-
-              
+              <Route path="/" element={<AuthRoute authenticated={authenticated} />} >
+                <Route path="/login" element={<Login  />} />
+                <Route path="/signup" element={<Signup />} />
+              </Route>
             </Routes>
           </div>
       </BrowserRouter>
