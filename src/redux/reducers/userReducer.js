@@ -9,8 +9,7 @@ const initialState = {
     notifications: []
 }
 
-// Dispatchで通知を受けると、処理内容に合わせて値を変換しreturn
-// 無名関数宣言
+// 無名関数宣言:Dispatchで通知を受けると、処理内容に合わせて値を変換
 export default function(state = initialState, action) {
     switch(action.type) {
         case SET_AUTHENTICATED:

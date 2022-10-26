@@ -9,6 +9,8 @@ import {useDispatch, useSelector} from "react-redux";
 
 
 export const Login = () => {
+  const navigation = useNavigate()
+  // Style theme
   const theme = useTheme()
   const email = useRef()
   const password = useRef()
@@ -17,8 +19,6 @@ export const Login = () => {
 
   // Reduxの関数を使用するためにはdispatchが必要
   const dispatch = useDispatch()
-  // Hooks内でしか使用することができないため、ここで宣言し引数をとる
-  const navigation = useNavigate()
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -96,7 +96,7 @@ export const Login = () => {
   )
 }
 
-// 何のために使用しているのか
+// 受け取ったデータが有効かどうか確認:無効な値がプロパティに与えられた場合、コンソールにアラートが出力
 Login.propTypes = {
   classes: PropTypes.object.isRequired,
   loginUser: PropTypes.func.isRequired,
