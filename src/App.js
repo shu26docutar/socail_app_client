@@ -8,6 +8,8 @@ import { Navbar } from './components/Navbar'
 import { Home } from './pages/home'
 import { Login }  from './pages/login'
 import { Signup } from './pages/signup'
+import { Provider } from 'react-redux';
+import store from './redux/store'
 
 const theme = createTheme(styleTheme)
 
@@ -30,19 +32,21 @@ function App() {
   return (
     // テーマをアプリ全体に適応
     <ThemeProvider theme={theme}>
-      <BrowserRouter>
-        <Navbar />
-          <div className='container'>
-            <Routes>
-              <Route path="/" element={<Home />} />
+      <Provider store={store}>
+        <BrowserRouter>
+          <Navbar />
+            <div className='container'>
+              <Routes>
+                <Route path="/" element={<Home />} />
 
-              <Route path="/" element={<AuthRoute authenticated={authenticated} />} >
-                <Route path="/login" element={<Login  />} />
-                <Route path="/signup" element={<Signup />} />
-              </Route>
-            </Routes>
-          </div>
-      </BrowserRouter>
+                <Route path="/" element={<AuthRoute authenticated={authenticated} />} >
+                  <Route path="/login" element={<Login  />} />
+                  <Route path="/signup" element={<Signup />} />
+                </Route>
+              </Routes>
+            </div>
+        </BrowserRouter>
+      </Provider>
     </ThemeProvider>
   );
 }

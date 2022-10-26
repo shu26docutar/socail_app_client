@@ -1,50 +1,37 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types'
 import { Typography, Grid, TextField, Button, CircularProgress, useTheme } from '@mui/material';
 import { Link, useNavigate } from "react-router-dom";
 import AppIcon from '../images/icon.png'
-import axios from '../contexts/axios';
-import { requests } from '../contexts/axiosRequest';
+import { connect } from 'react-redux';
+import { loginUser } from '../redux/actors/userActions';
+import {useDispatch, useSelector} from "react-redux";
 
 
 export const Login = () => {
   const theme = useTheme()
   const email = useRef()
   const password = useRef()
+  // UIState全取得:store/ui/loading(email/password/general)
+  const uiState = useSelector((state) => state.UI)
 
-  const [ loading, setLoading ] = useState(false)
-  const [ error, setError ] = useState({
-    email: '',
-    password: '',
-    general: ''
-  })
-
+  // Reduxの関数を使用するためにはdispatchが必要
+  const dispatch = useDispatch()
+  // Hooks内でしか使用することができないため、ここで宣言し引数をとる
   const navigation = useNavigate()
 
   function handleSubmit(e) {
     e.preventDefault()
 
-      setLoading(true)
+    const userData = {
+      email: email.current.value,
+      password: password.current.value
+    }
 
-      const userData = {
-        email: email.current.value,
-        password: password.current.value
-      }
-
-      axios.post(requests.fetchLogin, userData)
-        .then((res) => {
-          console.log('成功', res.data)
-          localStorage.setItem('FBIdToken', `Token ${res.data.token}`)
-          navigation('/')
-        })
-        .catch((error) => {        
-          setError(error.response.data)
-        })
-        .finally(() => {
-          setLoading(false)
-        })
+    // Redux Actions
+    dispatch(loginUser(userData, navigation))
   }
-
+  
   return (
     <>
       <Grid container style={theme.form}>
@@ -63,8 +50,8 @@ export const Login = () => {
               label='Email' 
               variant='standard'
               inputRef={email}
-              helperText={error.email}
-              error={error.email ? true: false}
+              helperText={uiState.email}
+              error={uiState.email ? true: false}
               fullWidth={true} />
 
             <TextField 
@@ -74,14 +61,14 @@ export const Login = () => {
               label='Password' 
               variant='standard'
               inputRef={password}
-              helperText={error.password}
-              error={error.password ? true: false}
+              helperText={uiState.password}
+              error={uiState.password ? true: false}
               style={theme.textField}
               fullWidth={true} />
 
-            {error.general && (
+            {uiState.general && (
               <Typography variant="body2" style={theme.customError}>
-                {error.general}
+                {uiState.general}
               </Typography>
             )}
 
@@ -90,10 +77,10 @@ export const Login = () => {
               variant='contained' 
               color='primary' 
               style={theme.button}
-              disabled={loading}
+              disabled={uiState.loading}
             >
               Login
-              {loading && 
+              {uiState.loading && 
                 <CircularProgress size={30} style={theme.progress} />
               }
             </Button>
@@ -111,5 +98,24 @@ export const Login = () => {
 
 // 何のために使用しているのか
 Login.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  loginUser: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
+  UI: PropTypes.object.isRequired,
 }
+
+// 取得したいデータの抽出:抽出したデータを記述
+const mapStateToProps = (state) => ({
+  // User Info
+  user: state.user,
+  // Error Info
+  UI: state.UI
+})
+
+// Action Dispatch:関数を入れる
+const mapActionsToProps = ({
+  loginUser
+})
+
+// Storeと接続する
+export default connect(mapStateToProps, mapActionsToProps)(Login)
