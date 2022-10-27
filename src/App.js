@@ -10,21 +10,25 @@ import { Login }  from './pages/login'
 import { Signup } from './pages/signup'
 import { Provider } from 'react-redux';
 import store from './redux/store'
+import { SET_AUTHENTICATED, SET_ERRORS } from './redux/types';
+import { logoutUser, getUserData } from './redux/actors/userActions';
+import axios from 'axios';
 
 const theme = createTheme(styleTheme)
 
 const token = localStorage.FBIdToken
-let authenticated
 
 if(token) {
   const decodeToken = jwtDecode(token)
   console.log(decodeToken)
   
   if(decodeToken.exp * 1000 < Date.now()) {
+    store.dispatch(logoutUser())
     window.location.href = '/login'
-    authenticated = false
   } else {
-    authenticated = true
+    store.dispatch({ type: SET_AUTHENTICATED })
+    axios.defaults.headers.common[`Authorization`] = token
+    store.dispatch(getUserData())
   }
 }
 
@@ -39,7 +43,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
 
-                <Route path="/" element={<AuthRoute authenticated={authenticated} />} >
+                <Route path="/" element={<AuthRoute />} >
                   <Route path="/login" element={<Login  />} />
                   <Route path="/signup" element={<Signup />} />
                 </Route>
