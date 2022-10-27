@@ -5,6 +5,9 @@ import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import { connect } from 'react-redux';
 import { editUserDetails } from '../redux/actors/userActions';
 import { useDispatch, useSelector } from "react-redux";
+import MyButton from '../utillity/MyButton';
+
+
 
 
 // FIXME:~ 空白で投稿した時に空白状態で保存されるようにする
@@ -22,6 +25,12 @@ export const EditDetails = () => {
     const bioRef = useRef()
     const websiteRef = useRef()
     const locationRef = useRef()
+
+    const styles = {
+        button: {
+            float: 'right'
+        }
+    }
 
     const handleSubmit = () => {
         const userDetails = {
@@ -51,11 +60,10 @@ export const EditDetails = () => {
 
     return (
         <Fragment>
-            <Tooltip title='Edit Details' placement='top'>
-                <IconButton onClick={handleOpen} style={theme.EditButton}>
-                    <ModeEditIcon color='primary' />
-                </IconButton>
-            </Tooltip>
+            {/* FIXME: 編集ボタンが右に配置されていない */}
+            <MyButton tip="Edit Details" onClick={handleOpen} btnClassName={styles.button}>
+                <ModeEditIcon color="primary" />
+            </MyButton>
 
             <Dialog open={openState} onClose={handleClose} fullWidth maxWidth='sm'>
                 <DialogTitle>Edit your details</DialogTitle>

@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import dayjs from 'dayjs'
 import { connect } from 'react-redux';
-import { Typography, Paper, Button, useTheme, IconButton, Tooltip } from '@mui/material';
+import { Typography, Paper, Button, useTheme } from '@mui/material';
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom'
 import { CalendarToday, KeyboardReturn, LocationOn } from '@mui/icons-material';
@@ -10,6 +10,7 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import { logoutUser, uploadImage } from '../redux/actors/userActions';
 import EditDetails from './EditDetails'
+import MyButton from '../utillity/MyButton';
 
 const Profile = (props) => {
     const userState = useSelector((state) => state.user)
@@ -60,11 +61,9 @@ const Profile = (props) => {
                         onChange={handleImageChange}
                     />
 
-                    <Tooltip title='Edit profile picture' placement='top'>
-                        <IconButton onClick={handleEditPicture} style={theme.button} >
-                            <ModeEditIcon color='primary' />
-                        </IconButton>
-                    </Tooltip>
+                    <MyButton tip='Edit Profile Picture' onClick={handleEditPicture} btnClassName={theme.button}>
+                        <ModeEditIcon color='primary' />
+                    </MyButton>
                 </div>
                 <hr />
                 <div style={theme.profile.profile_details}>
@@ -95,11 +94,9 @@ const Profile = (props) => {
                     <span>Joined {dayjs(createdAt).format('MMM YYYY')}</span>
                 </div>
 
-                <Tooltip title='Logout' placement='top'>
-                    <IconButton onClick={handleLogout}>
-                        <KeyboardReturn color='primary' />
-                    </IconButton>
-                </Tooltip>
+                <MyButton tip='Logout' onClick={handleLogout}>
+                    <KeyboardReturn color='primary' />
+                </MyButton>
 
                 <EditDetails />
             </div>
