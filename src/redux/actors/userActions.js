@@ -32,7 +32,7 @@ const setAuthorizationHeader = (token) => {
 
 export const getUserData = () => (dispatch) => {
     dispatch({ type: LOADING_USER })
-    axios.get('/user')
+    axios.get(requests.fetchUser)
         .then((res) => {
             dispatch({
                 type: SET_USER,
@@ -67,4 +67,14 @@ export const logoutUser = () => (dispatch) => {
     localStorage.removeItem('FBIdToken')
     delete axios.defaults.headers.common['Authorization']
     dispatch({ type: SET_UNAUTHENTICATED })
+}
+
+export const uploadImage = (formData) => (dispatch) => {
+    dispatch({ type: LOADING_USER })
+
+    axios.post(requests.fetchUploadImage, formData)
+        .then(() => {
+            dispatch(getUserData())
+        })
+        .catch((error) => console.log(error))
 }
