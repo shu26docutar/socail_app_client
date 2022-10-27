@@ -9,7 +9,7 @@ import { CalendarToday, KeyboardReturn, LocationOn } from '@mui/icons-material';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import { logoutUser, uploadImage } from '../redux/actors/userActions';
-
+import EditDetails from './EditDetails'
 
 const Profile = (props) => {
     const userState = useSelector((state) => state.user)
@@ -100,6 +100,8 @@ const Profile = (props) => {
                         <KeyboardReturn color='primary' />
                     </IconButton>
                 </Tooltip>
+
+                <EditDetails />
             </div>
         </Paper>
     ): (

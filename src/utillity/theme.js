@@ -84,5 +84,8 @@ export default {
       a: {
         margin: '20px 10px'
       }
+    },
+    EditButton: {
+      float: 'right'
     }
   }
