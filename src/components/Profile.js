@@ -2,14 +2,18 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import dayjs from 'dayjs'
 import { connect } from 'react-redux';
-import { Typography, Paper, Grid, TextField, Button, CircularProgress, useTheme } from '@mui/material';
+import { Typography, Paper, Button, useTheme, IconButton, Tooltip } from '@mui/material';
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom'
-import { CalendarToday, LocationOn } from '@mui/icons-material';
+import { CalendarToday, KeyboardReturn, LocationOn } from '@mui/icons-material';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import ModeEditIcon from '@mui/icons-material/ModeEdit';
+import { logoutUser, uploadImage } from '../redux/actors/userActions';
+
 
 const Profile = (props) => {
     const userState = useSelector((state) => state.user)
+    const dispatch = useDispatch()
     const theme = useTheme()
 
     const {
@@ -28,11 +32,39 @@ const Profile = (props) => {
         }
     } = props
 
+    const handleImageChange = (e) => {
+        const image = e.target.files[0]
+        const formData = new FormData()
+
+        formData.append('image', image, image.name)
+        dispatch(uploadImage(formData))
+    }
+
+    const handleEditPicture = () => {
+        const fileInput = document.getElementById('imageInput')
+        fileInput.click()
+    }
+
+    const handleLogout = () => {
+        dispatch(logoutUser())
+    }
+
     let profileMarkup = !userState.loading ? (authenticated ? (
         <Paper style={theme.paper}>
             <div style={theme.profile}>
                 <div style={theme.profile.image_wrapper} >
                     <img src={imageUrl} alt='profile' style={theme.profile.profile_image} />
+                    <input type='file' 
+                        id='imageInput' 
+                        hidden='hidden' 
+                        onChange={handleImageChange}
+                    />
+
+                    <Tooltip title='Edit profile picture' placement='top'>
+                        <IconButton onClick={handleEditPicture} style={theme.button} >
+                            <ModeEditIcon color='primary' />
+                        </IconButton>
+                    </Tooltip>
                 </div>
                 <hr />
                 <div style={theme.profile.profile_details}>
@@ -62,6 +94,12 @@ const Profile = (props) => {
 
                     <span>Joined {dayjs(createdAt).format('MMM YYYY')}</span>
                 </div>
+
+                <Tooltip title='Logout' placement='top'>
+                    <IconButton onClick={handleLogout}>
+                        <KeyboardReturn color='primary' />
+                    </IconButton>
+                </Tooltip>
             </div>
         </Paper>
     ): (
@@ -86,10 +124,17 @@ const Profile = (props) => {
 Profile.propTypes = {
     classes: PropTypes.object.isRequired,
     user: PropTypes.object.isRequired,
+    logoutUser: PropTypes.func.isRequired,
+    uploadImage: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = (state) => ({
     user: state.user
 })
 
-export default connect(mapStateToProps)(Profile)
+const mapActionsToProps = ({
+    logoutUser,
+    uploadImage
+})
+
+export default connect(mapStateToProps, mapActionsToProps)(Profile)
