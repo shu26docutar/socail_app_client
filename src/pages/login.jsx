@@ -98,6 +98,7 @@ export const Login = () => {
 
 // 受け取ったデータが有効かどうか確認:無効な値がプロパティに与えられた場合、コンソールにアラートが出力
 Login.propTypes = {
+  // おそらくclassesは不要
   classes: PropTypes.object.isRequired,
   loginUser: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,

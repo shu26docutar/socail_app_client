@@ -10,7 +10,7 @@ import { Login }  from './pages/login'
 import { Signup } from './pages/signup'
 import { Provider } from 'react-redux';
 import store from './redux/store'
-import { SET_AUTHENTICATED, SET_ERRORS } from './redux/types';
+import { SET_AUTHENTICATED } from './redux/types';
 import { logoutUser, getUserData } from './redux/actors/userActions';
 import axios from 'axios';
 

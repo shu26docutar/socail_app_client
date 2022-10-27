@@ -3,6 +3,7 @@ import { Grid } from '@mui/material';
 import axios from '../contexts/axios';
 import { requests } from '../contexts/axiosRequest';
 import Scream from '../components/Scream'
+import Profile from '../components/Profile';
 
 export const Home = () => {
   const [axiosData, setAxiosData] = useState()
@@ -10,7 +11,6 @@ export const Home = () => {
   useEffect(() => {
     axios.get(requests.fetchScream)
       .then((res) => {
-        // console.log(res.data)
         setAxiosData({
           scream: res.data
         })
@@ -34,7 +34,7 @@ export const Home = () => {
           {resentScreamsMarkup}
         </Grid>
         <Grid item sm={4} xs={12}>
-          <p>Profile...</p>
+          <Profile />
         </Grid>
     </Grid>
     </>
