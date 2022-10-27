@@ -4,6 +4,8 @@ const initialStore = {
     loading: false,
     email: null,
     password: null,
+    confirmPassword: null,
+    handle: null,
     general: null
 }
 
@@ -16,6 +18,8 @@ export default function(state = initialStore, action) {
                 loading: false,
                 email: action.payload.email,
                 password: action.payload.password,
+                confirmPassword: action.payload.confirmPassword,
+                handle: action.payload.handle,
                 general: action.payload.general
             }
         case CLEAR_ERRORS:
@@ -24,6 +28,8 @@ export default function(state = initialStore, action) {
                 loading: false,
                 email: null,
                 password: null,
+                confirmPassword: null,
+                handle: null,
                 general: null,
             }
         case LOADING_UI:

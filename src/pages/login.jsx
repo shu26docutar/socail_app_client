@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import AppIcon from '../images/icon.png'
 import { connect } from 'react-redux';
 import { loginUser } from '../redux/actors/userActions';
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 
 export const Login = () => {
@@ -101,7 +101,7 @@ Login.propTypes = {
   classes: PropTypes.object.isRequired,
   loginUser: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
-  UI: PropTypes.object.isRequired,
+  UI: PropTypes.object.isRequired
 }
 
 // 取得したいデータの抽出:抽出したデータを記述

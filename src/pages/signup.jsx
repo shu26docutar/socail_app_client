@@ -3,32 +3,34 @@ import PropTypes from 'prop-types'
 import { Typography, Grid, TextField, Button, CircularProgress, useTheme } from '@mui/material';
 import { Link, useNavigate } from "react-router-dom";
 import AppIcon from '../images/icon.png'
-import axios from '../contexts/axios';
-import { requests } from '../contexts/axiosRequest';
+import { connect } from 'react-redux';
+import { signupUser } from '../redux/actors/userActions';
+import { useDispatch, useSelector } from "react-redux";
 
 export const Signup = () => {
   const theme = useTheme()
 
   const navigation = useNavigate()
+  const dispatch = useDispatch()
 
   const email = useRef()
   const password = useRef()
   const confirmPassword = useRef()
   const handle = useRef()
 
-  const [ loading, setLoading ] = useState(false)
-  const [ error, setError ] = useState({
-    email: '',
-    password: '',
-    confirmPassword: '',
-    handle: '',
-    general: ''
-  })
+  const uiState = useSelector((state) => state.UI)
+
+  // const [ loading, setLoading ] = useState(false)
+  // const [ error, setError ] = useState({
+  //   email: '',
+  //   password: '',
+  //   confirmPassword: '',
+  //   handle: '',
+  //   general: ''
+  // })
 
   function handleSubmit(e) {
     e.preventDefault()
-
-      setLoading(true)
 
       const newUserData = {
         email: email.current.value,
@@ -37,19 +39,7 @@ export const Signup = () => {
         handle: handle.current.value
       }
 
-      axios.post(requests.fetchSignup, newUserData)
-        .then((res) => {
-          console.log('成功', res.data)
-          // Token情報をローカル内に永久的に保持をする、削除する場合はremoveを使用する
-          localStorage.setItem('FBIdToken', `Token ${res.data.token}`)
-          navigation('/')
-        })
-        .catch((error) => {          
-          setError(error.response.data)
-        })
-        .finally(() => {
-          setLoading(false)
-        })
+      dispatch(signupUser(newUserData, navigation))
   }
 
   return (
@@ -70,8 +60,8 @@ export const Signup = () => {
               label='Email' 
               variant='standard'
               inputRef={email}
-              helperText={error.email}
-              error={error.email ? true: false}
+              helperText={uiState.email}
+              error={uiState.email ? true: false}
               fullWidth={true} />
 
             <TextField 
@@ -81,8 +71,8 @@ export const Signup = () => {
               label='Password' 
               variant='standard'
               inputRef={password}
-              helperText={error.password}
-              error={error.password ? true: false}
+              helperText={uiState.password}
+              error={uiState.password ? true: false}
               style={theme.textField}
               fullWidth={true} />
 
@@ -93,8 +83,8 @@ export const Signup = () => {
               label='confirmPassword' 
               variant='standard'
               inputRef={confirmPassword}
-              helperText={error.confirmPassword}
-              error={error.confirmPassword ? true: false}
+              helperText={uiState.confirmPassword}
+              error={uiState.confirmPassword ? true: false}
               style={theme.textField}
               fullWidth={true} /> 
 
@@ -105,14 +95,14 @@ export const Signup = () => {
               label='Handle' 
               variant='standard'
               inputRef={handle}
-              helperText={error.handle}
-              error={error.handle ? true: false}
+              helperText={uiState.handle}
+              error={uiState.handle ? true: false}
               style={theme.textField}
               fullWidth={true} />
 
-            {error.general && (
+            {uiState.general && (
               <Typography variant="body2" style={theme.customError}>
-                {error.general}
+                {uiState.general}
               </Typography>
             )}
 
@@ -121,10 +111,10 @@ export const Signup = () => {
               variant='contained' 
               color='primary' 
               style={theme.button}
-              disabled={loading}
+              disabled={uiState.loading}
             >
               Signup
-              {loading && 
+              {uiState.loading && 
                 <CircularProgress size={30} style={theme.progress} />
               }
             </Button>
@@ -140,7 +130,16 @@ export const Signup = () => {
   )
 }
 
-// 何のために使用しているのか
 Signup.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  signupUser: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
+  UI: PropTypes.object.isRequired
 }
+
+const mapStateToProps = (state) => ({
+  user: state.user,
+  UI: state.UI
+})
+
+export default connect(mapStateToProps, { signupUser })(Signup)
