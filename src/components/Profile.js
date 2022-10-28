@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react'
-import PropTypes from 'prop-types'
-import dayjs from 'dayjs'
+import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
+import dayjs from 'dayjs';
 import { connect } from 'react-redux';
 import { Typography, Paper, Button, useTheme } from '@mui/material';
 import { useDispatch, useSelector } from "react-redux";
@@ -9,7 +9,7 @@ import { CalendarToday, KeyboardReturn, LocationOn } from '@mui/icons-material';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import { logoutUser, uploadImage } from '../redux/actors/userActions';
-import EditDetails from './EditDetails'
+import EditDetails from './EditDetails';
 import MyButton from '../utillity/MyButton';
 
 const Profile = (props) => {
@@ -18,7 +18,6 @@ const Profile = (props) => {
     const theme = useTheme()
 
     const {
-        classes,
         user: {
             credentials: {
                 handle, 
@@ -28,7 +27,6 @@ const Profile = (props) => {
                 website,
                 location
             },
-            loading,
             authenticated
         }
     } = props
@@ -121,7 +119,6 @@ const Profile = (props) => {
 }
 
 Profile.propTypes = {
-    classes: PropTypes.object.isRequired,
     user: PropTypes.object.isRequired,
     logoutUser: PropTypes.func.isRequired,
     uploadImage: PropTypes.func.isRequired,

@@ -1,33 +1,21 @@
-import React, { useRef, useState } from 'react';
-import PropTypes from 'prop-types'
+import React, { useRef } from 'react';
+import PropTypes from 'prop-types';
 import { Typography, Grid, TextField, Button, CircularProgress, useTheme } from '@mui/material';
 import { Link, useNavigate } from "react-router-dom";
-import AppIcon from '../images/icon.png'
+import AppIcon from '../images/icon.png';
 import { connect } from 'react-redux';
 import { signupUser } from '../redux/actors/userActions';
 import { useDispatch, useSelector } from "react-redux";
 
 export const Signup = () => {
   const theme = useTheme()
-
   const navigation = useNavigate()
   const dispatch = useDispatch()
-
   const email = useRef()
   const password = useRef()
   const confirmPassword = useRef()
   const handle = useRef()
-
   const uiState = useSelector((state) => state.UI)
-
-  // const [ loading, setLoading ] = useState(false)
-  // const [ error, setError ] = useState({
-  //   email: '',
-  //   password: '',
-  //   confirmPassword: '',
-  //   handle: '',
-  //   general: ''
-  // })
 
   function handleSubmit(e) {
     e.preventDefault()

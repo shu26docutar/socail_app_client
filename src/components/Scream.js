@@ -32,17 +32,16 @@ const Scream = (props) => {
     }
   }
 
-  const { children,
-          scream: {
-              body,
-              createdAt,
-              commentCount,
-              likeCount,
-              screamId,
-              userHandle,
-              userImage
-          },
-          user:{authenticated, credentials: { handle }}
+  const { scream: {
+            body,
+            createdAt,
+            commentCount,
+            likeCount,
+            screamId,
+            userHandle,
+            userImage
+        },
+        user:{authenticated, credentials: { handle }}
   } =  props 
 
   const userState = useSelector((state) => state.user)

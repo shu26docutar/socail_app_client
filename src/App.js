@@ -1,15 +1,15 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import jwtDecode from 'jwt-decode'
-import styleTheme from './utillity/theme'
-import AuthRoute from './utillity/AuthRoute'
-import { Navbar } from './components/Navbar'
-import { Home } from './pages/home'
-import { Login }  from './pages/login'
-import { Signup } from './pages/signup'
+import jwtDecode from 'jwt-decode';
+import styleTheme from './utillity/theme';
+import AuthRoute from './utillity/AuthRoute';
+import { Navbar } from './components/Navbar';
+import { Home } from './pages/home';
+import { Login }  from './pages/login';
+import { Signup } from './pages/signup';
 import { Provider } from 'react-redux';
-import store from './redux/store'
+import store from './redux/store';
 import { SET_AUTHENTICATED } from './redux/types';
 import { logoutUser, getUserData } from './redux/actors/userActions';
 import axios from 'axios';

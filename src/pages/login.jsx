@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import { Typography, Grid, TextField, Button, CircularProgress, useTheme } from '@mui/material';
 import { Link, useNavigate } from "react-router-dom";
-import AppIcon from '../images/icon.png'
+import AppIcon from '../images/icon.png';
 import { connect } from 'react-redux';
 import { loginUser } from '../redux/actors/userActions';
 import { useDispatch, useSelector } from "react-redux";

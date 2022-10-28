@@ -1,11 +1,11 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types'
-import { useDispatch, useSelector } from "react-redux";
+import PropTypes from 'prop-types';
+import { useDispatch } from "react-redux";
 import MyButton from '../utillity/MyButton';
-import { Button, DialogTitle, DialogContent, DialogActions, Dialog, TextField } from '@mui/material';
+import { Button, DialogTitle, DialogActions, Dialog } from '@mui/material';
 import { DeleteOutline } from '@mui/icons-material';
-import { deleteScream } from '../redux/actors/dataActions'
+import { deleteScream } from '../redux/actors/dataActions';
 
 const styles = {
     deleteButton: {
@@ -58,3 +58,5 @@ DeleteScream.propTypes = {
 }
 
 export default connect(null, { deleteScream })(DeleteScream)
+
+// データを削除するとコンポーネントのみ残置する現象を突き止める

@@ -1,5 +1,5 @@
-import React, { Fragment, useState, useRef } from 'react'
-import PropTypes from 'prop-types'
+import React, { Fragment, useState, useRef } from 'react';
+import PropTypes from 'prop-types';
 import { Button, useTheme, DialogTitle, DialogActions, Dialog, TextField, CircularProgress } from '@mui/material';
 import { connect } from 'react-redux';
 import { postScream } from '../redux/actors/dataActions';
