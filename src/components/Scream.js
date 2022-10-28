@@ -3,8 +3,18 @@ import { Typography, Card, CardMedia, CardContent } from '@mui/material'
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types'
+import { useDispatch, useSelector } from "react-redux";
+import { likeScream, unlikeScream } from '../redux/actors/dataActions';
+import MyButton from '../utillity/MyButton';
+import ChatIcon from '@mui/icons-material/Chat';
+import { FavoriteBorder } from '@mui/icons-material';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+
 
 const Scream = (props) => {
+  const dispatch = useDispatch()
   dayjs.extend(relativeTime)
 
   const styles = {
@@ -30,10 +40,45 @@ const Scream = (props) => {
               screamId,
               userHandle,
               userImage
-          }
-  } = props
+          },
+          user:{authenticated}
+  } =  props 
+
+  const userState = useSelector((state) => state.user)
 
   // https://atsu-developer.net/270/
+
+  const likedScream = () => {
+    if(userState.likes && userState.likes.find((like) => like.screamId === screamId)) {
+      return true
+    } else return false
+  }
+
+  const like = () => {
+    dispatch(likeScream(screamId))
+  }
+
+  const unlike = () => {
+    dispatch(unlikeScream(screamId))
+  }
+
+  const likeButton = !authenticated ? (
+    <MyButton tip='Like'>
+      <Link to='/login'>
+        <FavoriteBorder color='primary' />
+      </Link>
+    </MyButton>
+  ) : (
+    likedScream() ? (
+      <MyButton tip='Undo like' onClick={unlike}>
+        <FavoriteIcon color='primary' />
+      </MyButton>
+    ) : (
+      <MyButton tip='Like' onClick={like}>
+        <FavoriteBorder color='primary' />
+      </MyButton>
+    )
+  )
 
   return (
     <div>
@@ -47,13 +92,35 @@ const Scream = (props) => {
           <Typography variant='h5' component={Link} to={`/users/${userHandle}`} color="primary">{userHandle}</Typography>
           <Typography variant='body2' color='textSecondary'>{dayjs(createdAt).fromNow()}</Typography>
           <Typography variant='body1'>{body}</Typography>
+          {likeButton}
+          <span>{likeCount} likes</span>
+          <MyButton tip='comments'>
+            <ChatIcon color='primary' />
+          </MyButton>
+          <span>{commentCount} comments</span>
         </CardContent>
       </Card>
     </div>
   )
 }
 
-export default Scream
+Scream.propTypes = {
+  likeScream: PropTypes.func.isRequired,
+  unlikeScream: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
+  scream: PropTypes.object.isRequired,
+}
 
-// フレキシブルデザインの採用
-// 画像の途切れ修正
+const mapStateToProps = (state) => ({
+  user: state.user,
+})
+
+const mapActionsToProps = ({
+  likeScream,
+  unlikeScream
+})
+
+export default connect(mapStateToProps, mapActionsToProps)(Scream)
+
+// いいねを取り消しすると、データは削除されるが、Viewはそのまま、
+// 反対に、取り消しをしていない良いねのViewが変更される

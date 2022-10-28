@@ -1,28 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Grid } from '@mui/material';
-import axios from '../contexts/axios';
-import { requests } from '../contexts/axiosRequest';
 import Scream from '../components/Scream'
 import Profile from '../components/Profile';
+import { connect } from 'react-redux';
+import { getScreams } from '../redux/actors/dataActions';
+import PropTypes from 'prop-types'
+import { useDispatch, useSelector } from "react-redux";
 
 export const Home = () => {
-  const [axiosData, setAxiosData] = useState()
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    axios.get(requests.fetchScream)
-      .then((res) => {
-        setAxiosData({
-          scream: res.data
-        })
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+    dispatch(getScreams())
   },[])
 
-  const resentScreamsMarkup = axiosData ? (
-    axiosData.scream.map((scream) => {
-      // 選択された時にどの要素が選択されたかkeyを設定する必要がるので忘れない
+  const { screams, loading } = useSelector((state) => state.data)
+  
+  const resentScreamsMarkup = !loading ? (
+    screams.map((scream) => {
       return <Scream key={scream.screamId} scream={scream} />
     })
   ) : <p>Loading....</p>
@@ -40,3 +35,14 @@ export const Home = () => {
     </>
   )
 }
+
+Home.propTypes = {
+  getScreams: PropTypes.func.isRequired,
+  data: PropTypes.object.isRequired
+}
+
+const mapStateToProps = (state) => ({
+  data: state.data,
+})
+
+export default connect(mapStateToProps, { getScreams })(Home)

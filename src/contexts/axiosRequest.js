@@ -5,6 +5,9 @@ export const requests = {
     fetchSignup: '/signup',
     fetchUploadImage: '/user/image',
 
-    // Get
+    // Get or Post
     fetchUser: '/user',
+
+    // Get
+    getScream: '/scream'
 }
