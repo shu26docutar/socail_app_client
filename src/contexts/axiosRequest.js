@@ -4,6 +4,7 @@ export const requests = {
     fetchLogin: '/login',
     fetchSignup: '/signup',
     fetchUploadImage: '/user/image',
+    fetchCreateScream: '/createScream',
 
     // Get or Post
     fetchUser: '/user',

@@ -8,6 +8,7 @@ import AddIcon from '@mui/icons-material/Add';
 import HomeIcon from '@mui/icons-material/Home';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import { useSelector } from "react-redux";
+import PostScream from './PostScream'
 
 export const Navbar = () => {
   const authenticated = useSelector((state) => state.user.authenticated)
@@ -17,9 +18,11 @@ export const Navbar = () => {
       <Toolbar className="nav-container">
           {authenticated ? (
             <Fragment>
-              <MyButton tip='Create a Scream'>
+              {/* <MyButton tip='Create a Scream'>
                 <AddIcon />
-              </MyButton>
+              </MyButton> */}
+
+              <PostScream />
 
               <Link to='/'>
                 <MyButton tip='Home'>
