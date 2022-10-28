@@ -46,3 +46,5 @@ const mapStateToProps = (state) => ({
 })
 
 export default connect(mapStateToProps, { getScreams })(Home)
+
+// 正常に削除することはできるが、削除後の投稿が反映されていない

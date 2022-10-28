@@ -11,7 +11,7 @@ import MyButton from '../utillity/MyButton';
 import ChatIcon from '@mui/icons-material/Chat';
 import { FavoriteBorder } from '@mui/icons-material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-
+import DeleteScream from './DeleteScream'
 
 const Scream = (props) => {
   const dispatch = useDispatch()
@@ -19,6 +19,7 @@ const Scream = (props) => {
 
   const styles = {
     card: {
+      position: 'relative',
       display: 'flex',
       marginBottom: 20,
     },
@@ -41,7 +42,7 @@ const Scream = (props) => {
               userHandle,
               userImage
           },
-          user:{authenticated}
+          user:{authenticated, credentials: { handle }}
   } =  props 
 
   const userState = useSelector((state) => state.user)
@@ -80,6 +81,10 @@ const Scream = (props) => {
     )
   )
 
+  const deleteButton = authenticated && userHandle === handle ? (
+    <DeleteScream screamId={screamId}/>
+  ) : null
+
   return (
     <div>
       <Card style={styles.card}>
@@ -90,6 +95,7 @@ const Scream = (props) => {
         
         <CardContent style={styles.content}>
           <Typography variant='h5' component={Link} to={`/users/${userHandle}`} color="primary">{userHandle}</Typography>
+            {deleteButton}
           <Typography variant='body2' color='textSecondary'>{dayjs(createdAt).fromNow()}</Typography>
           <Typography variant='body1'>{body}</Typography>
           {likeButton}
@@ -121,6 +127,3 @@ const mapActionsToProps = ({
 })
 
 export default connect(mapStateToProps, mapActionsToProps)(Scream)
-
-// いいねを取り消しすると、データは削除されるが、Viewはそのまま、
-// 反対に、取り消しをしていない良いねのViewが変更される
