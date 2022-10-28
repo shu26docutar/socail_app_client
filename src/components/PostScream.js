@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { Button, useTheme, DialogTitle, DialogActions, Dialog, TextField, CircularProgress } from '@mui/material';
+import { Button, useTheme, DialogTitle, DialogActions, Dialog, TextField, CircularProgress, DialogContent } from '@mui/material';
 import { connect } from 'react-redux';
 import { postScream } from '../redux/actors/dataActions';
 import { useDispatch, useSelector } from "react-redux";
@@ -61,7 +61,7 @@ export const PostScream = () => {
                 <DialogTitle>
                     Post a new scream
                 </DialogTitle>
-                <DialogActions>
+                <DialogContent>
                     <form onSubmit={handleSubmit}>
                         <TextField 
                             name='body' 
@@ -90,7 +90,7 @@ export const PostScream = () => {
                             <CircularProgress size={30} style={styles.progressSpinner} />}
                         </Button>
                     </form>
-                </DialogActions>
+                </DialogContent>
             </Dialog>
         </Fragment>
     )

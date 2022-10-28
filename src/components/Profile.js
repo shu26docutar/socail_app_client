@@ -64,7 +64,7 @@ const Profile = (props) => {
                     </MyButton>
                 </div>
                 <hr />
-                <div style={theme.profile.profile_details}>
+                <div style={theme.profile.profile_details} id='details'>
                     <Typography variant='h5' component={Link} to={`/users/${handle}`} color="primary">@{handle}</Typography>
 
                     <hr />
@@ -82,7 +82,8 @@ const Profile = (props) => {
                         <Fragment>
                             <AccessTimeIcon color='primary' />
                             <a href={website} target='_blank' rel='noopener noreferrer'>
-                                {' '}{website}
+                                {' '}
+                                {website}
                             </a>
                         </Fragment>
                     )}

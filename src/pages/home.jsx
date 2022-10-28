@@ -28,7 +28,7 @@ export const Home = () => {
         <Grid item sm={8} xs={12}>
           {resentScreamsMarkup}
         </Grid>
-        <Grid item sm={4} xs={12}>
+        <Grid item sm={4} xs={12} id="profile_item">
           <Profile />
         </Grid>
     </Grid>

@@ -19,6 +19,15 @@ body {
   color: #fff;
 }
 
+#profile_item{
+  float:left;
+  padding-left: 20px;
+}
+
 a{
   text-decoration: none;
+}
+
+#details {
+  text-align: center;
 }
