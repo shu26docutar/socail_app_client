@@ -25,7 +25,7 @@ const styles = {
 }
 
 export const PostScream = () => {
-    const theme = useTheme()
+    const theme = useTheme() 
     const dispatch = useDispatch()
     const uiState = useSelector((state) => state.UI)
     const [ openState, setOpenState ] = useState(false)

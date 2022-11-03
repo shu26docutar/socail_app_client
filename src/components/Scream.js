@@ -12,6 +12,7 @@ import ChatIcon from '@mui/icons-material/Chat';
 import { FavoriteBorder } from '@mui/icons-material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import DeleteScream from './DeleteScream'
+import ScreamDialog from './ScreamDialog'
 
 const Scream = (props) => {
   const dispatch = useDispatch()
@@ -103,6 +104,7 @@ const Scream = (props) => {
             <ChatIcon color='primary' />
           </MyButton>
           <span>{commentCount} comments</span>
+          <ScreamDialog screamId={screamId} userHandle={userHandle} />
         </CardContent>
       </Card>
     </div>
