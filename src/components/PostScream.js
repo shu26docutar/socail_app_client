@@ -2,7 +2,7 @@ import React, { Fragment, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Button, useTheme, DialogTitle, DialogActions, Dialog, TextField, CircularProgress, DialogContent } from '@mui/material';
 import { connect } from 'react-redux';
-import { postScream } from '../redux/actors/dataActions';
+import { postScream, clearErrors } from '../redux/actors/dataActions';
 import { useDispatch, useSelector } from "react-redux";
 import MyButton from '../utillity/MyButton';
 import AddIcon from '@mui/icons-material/Add';
@@ -10,7 +10,9 @@ import CloseIcon from '@mui/icons-material/Close';
 
 const styles = {
     submitButton: {
-        position: 'relative'
+        position: 'relative',
+        float: 'right',
+        // marginTop: 10,
     },
     progressSpinner: {
         position: 'absolute'
@@ -34,10 +36,11 @@ export const PostScream = () => {
     }
 
     const handleClose = () => {
+        dispatch(clearErrors())
         setOpenState(false)
     }
 
-    const handleSubmit = (e) => {
+    async function handleSubmit(e){
         e.preventDefault()
 
         const bodyData = {
@@ -45,8 +48,6 @@ export const PostScream = () => {
         }
 
         dispatch(postScream(bodyData))
-
-        // handleClose()
     }
 
     return (
@@ -99,13 +100,11 @@ export const PostScream = () => {
 PostScream.propTypes = {
     postScream:  PropTypes.func.isRequired,
     UI: PropTypes.object.isRequired,
+    clearErrors: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
     UI: state.UI
 })
 
-export default connect(mapStateToProps, { postScream })(PostScream)
-
-// 投稿後投稿フォームが消えない
-// 投稿フォームのレイアウトが壊れている
+export default connect(mapStateToProps, { postScream, clearErrors })(PostScream)

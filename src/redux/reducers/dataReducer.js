@@ -28,7 +28,10 @@ export default function (state = initialState, action) {
             }
         case DELETE_SCREAM:
             const Dindex = state.screams.findIndex((scream) => scream.screamId === action.payload)
-            state.scream.splice(Dindex, 1)
+            state.screams.splice(Dindex, 1)
+            return {
+                ...state
+            }
         case POST_SCREAM:
             return {
                 ...state,
