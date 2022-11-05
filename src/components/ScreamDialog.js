@@ -46,7 +46,9 @@ export const ScreamDialog = (props) => {
     }
     } =  props 
 
-    const loading = useSelector((state) => state.user.loading)
+    const loading = useSelector((state) => state.UI.loading)
+    const user = useSelector((state) => state.user)
+    console.log(user)
 
     const dialogMarkup = loading ? (
         <CircularProgress size={200} />
@@ -129,6 +131,3 @@ const mapStateToProps = (state) => ({
 })
 
 export default connect(mapStateToProps, { getScream })(ScreamDialog)
-
-// ダイアログを正常に表示することに成功
-// しかし、表示することにラグが生じる
