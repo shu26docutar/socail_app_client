@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Grid } from '@mui/material';
-import Scream from '../components/Scream';
-import Profile from '../components/Profile';
+import Scream from '../components/screams/Scream';
+import Profile from '../components/profile/Profile';
 import { connect } from 'react-redux';
 import { getScreams } from '../redux/actors/dataActions';
 import PropTypes from 'prop-types';

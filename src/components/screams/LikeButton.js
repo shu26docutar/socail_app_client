@@ -1,10 +1,10 @@
 import React from 'react';
-import MyButton from '../utillity/MyButton';
+import MyButton from '../../utillity/MyButton';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { FavoriteBorder } from '@mui/icons-material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { likeScream, unlikeScream } from '../redux/actors/dataActions';
+import { likeScream, unlikeScream } from '../../redux/actors/dataActions';
 import { useDispatch, useSelector, connect } from "react-redux";
 
 const LikeButton = (props) => {

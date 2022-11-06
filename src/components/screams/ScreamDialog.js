@@ -1,13 +1,13 @@
 import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
-import MyButton from '../utillity/MyButton';
+import MyButton from '../../utillity/MyButton';
 import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
 import { Dialog, CircularProgress, DialogContent, Typography, Grid } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { useDispatch, useSelector, connect } from "react-redux";
 import { UnfoldMore } from '@mui/icons-material';
-import { getScream } from '../redux/actors/dataActions';
+import { getScream } from '../../redux/actors/dataActions';
 import LikeButton from './LikeButton';
 import ChatIcon from '@mui/icons-material/Chat';
 

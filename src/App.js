@@ -4,7 +4,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import jwtDecode from 'jwt-decode';
 import styleTheme from './utillity/theme';
 import AuthRoute from './utillity/AuthRoute';
-import { Navbar } from './components/Navbar';
+import { Navbar } from './components/layout/Navbar';
 import { Home } from './pages/home';
 import { Login }  from './pages/login';
 import { Signup } from './pages/signup';

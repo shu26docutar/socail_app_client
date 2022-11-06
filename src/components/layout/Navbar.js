@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, Button,  } from '@mui/material';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import MyButton from '../utillity/MyButton';
+import MyButton from '../../utillity/MyButton';
 import HomeIcon from '@mui/icons-material/Home';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import { useSelector } from "react-redux";
-import PostScream from './PostScream';
+import PostScream from '../screams/PostScream';
 
 export const Navbar = () => {
   const authenticated = useSelector((state) => state.user.authenticated)

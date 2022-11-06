@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { Button, useTheme, DialogTitle, DialogContent, DialogActions, Dialog, TextField } from '@mui/material';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import { connect } from 'react-redux';
-import { editUserDetails } from '../redux/actors/userActions';
+import { editUserDetails } from '../../redux/actors/userActions';
 import { useDispatch, useSelector } from "react-redux";
-import MyButton from '../utillity/MyButton';
+import MyButton from '../../utillity/MyButton';
 
 // FIXME:~ 空白で投稿した時に空白状態で保存されるようにする
 export const EditDetails = () => {

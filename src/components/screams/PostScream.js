@@ -1,10 +1,10 @@
 import React, { Fragment, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { Button, useTheme, DialogTitle, DialogActions, Dialog, TextField, CircularProgress, DialogContent } from '@mui/material';
+import { Button, useTheme, DialogTitle, Dialog, TextField, CircularProgress, DialogContent } from '@mui/material';
 import { connect } from 'react-redux';
-import { postScream, clearErrors } from '../redux/actors/dataActions';
+import { postScream, clearErrors } from '../../redux/actors/dataActions';
 import { useDispatch, useSelector } from "react-redux";
-import MyButton from '../utillity/MyButton';
+import MyButton from '../../utillity/MyButton';
 import AddIcon from '@mui/icons-material/Add';
 import CloseIcon from '@mui/icons-material/Close';
 

@@ -2,10 +2,10 @@ import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useDispatch } from "react-redux";
-import MyButton from '../utillity/MyButton';
+import MyButton from '../../utillity/MyButton';
 import { Button, DialogTitle, DialogActions, Dialog } from '@mui/material';
 import { DeleteOutline } from '@mui/icons-material';
-import { deleteScream } from '../redux/actors/dataActions';
+import { deleteScream } from '../../redux/actors/dataActions';
 
 const styles = {
     deleteButton: {

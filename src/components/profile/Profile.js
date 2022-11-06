@@ -8,9 +8,9 @@ import { Link } from 'react-router-dom'
 import { CalendarToday, KeyboardReturn, LocationOn } from '@mui/icons-material';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
-import { logoutUser, uploadImage } from '../redux/actors/userActions';
+import { logoutUser, uploadImage } from '../../redux/actors/userActions';
 import EditDetails from './EditDetails';
-import MyButton from '../utillity/MyButton';
+import MyButton from '../../utillity/MyButton';
 
 const Profile = (props) => {
     const userState = useSelector((state) => state.user)
