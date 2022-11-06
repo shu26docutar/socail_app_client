@@ -10,12 +10,10 @@ import { UnfoldMore } from '@mui/icons-material';
 import { getScream } from '../../redux/actors/dataActions';
 import LikeButton from './LikeButton';
 import ChatIcon from '@mui/icons-material/Chat';
+import Comments from './Comments'
+import { useTheme } from '@mui/material';
 
 const styles = {
-    invisibleSeparator : {
-        border: 'none',
-        margin: 4
-    },
     profileImage: {
         maxWidth: 200,
         height: 200,
@@ -43,6 +41,7 @@ const styles = {
 export const ScreamDialog = (props) => {
     const [ openState, setOpenState ] = useState(false)
     const dispatch = useDispatch()
+    const theme = useTheme()
 
     const { scream: {
         body,
@@ -51,7 +50,8 @@ export const ScreamDialog = (props) => {
         likeCount,
         screamId,
         userHandle,
-        userImage
+        userImage,
+        comments
     }
     } =  props 
 
@@ -78,13 +78,13 @@ export const ScreamDialog = (props) => {
                     @{userHandle}
                 </Typography>
 
-                <hr style={styles.invisibleSeparator} />
+                <hr style={theme.invisibleSeparator} />
 
                 <Typography variant='body2' color='textSecondary'>
                     {dayjs(createdAt).format('h:mm a, MMMM DD YYYY')}
                 </Typography>
 
-                <hr style={styles.invisibleSeparator} />
+                <hr style={theme.invisibleSeparator} />
                 <Typography variant='body1'>{ body }</Typography>
 
                 <LikeButton screamId={screamId} />
@@ -95,6 +95,9 @@ export const ScreamDialog = (props) => {
                 </MyButton>
                 <span>{commentCount} comments</span>
             </Grid>
+
+            <hr style={theme.invisibleSeparator} />
+            <Comments comments={comments} />
         </Grid>
     )
 
