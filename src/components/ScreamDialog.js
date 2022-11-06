@@ -5,10 +5,11 @@ import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
 import { Dialog, CircularProgress, DialogContent, Typography, Grid } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import { connect } from 'react-redux';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, connect } from "react-redux";
 import { UnfoldMore } from '@mui/icons-material';
 import { getScream } from '../redux/actors/dataActions';
+import LikeButton from './LikeButton';
+import ChatIcon from '@mui/icons-material/Chat';
 
 const styles = {
     invisibleSeparator : {
@@ -28,7 +29,15 @@ const styles = {
         position: 'absolute',
         left: '90%'
     },
-    expandButton: {}
+    expandButton: {
+        position: 'absolute',
+        left: '90%'
+    },
+    spinnerDiv: {
+        textAlign: 'center',
+        marginTop: 50,
+        marginBottom: 50
+    }
 }
 
 export const ScreamDialog = (props) => {
@@ -47,11 +56,12 @@ export const ScreamDialog = (props) => {
     } =  props 
 
     const loading = useSelector((state) => state.UI.loading)
-    const user = useSelector((state) => state.user)
-    console.log(user)
+    const screams = useSelector((state) => state.data)
 
     const dialogMarkup = loading ? (
-        <CircularProgress size={200} />
+        <div style={styles.spinnerDiv}>
+            <CircularProgress size={200} thickness={2} />
+        </div>
     ) : (
         <Grid container spacing={16}>
             <Grid item sm={5}>
@@ -76,6 +86,14 @@ export const ScreamDialog = (props) => {
 
                 <hr style={styles.invisibleSeparator} />
                 <Typography variant='body1'>{ body }</Typography>
+
+                <LikeButton screamId={screamId} />
+                <span>{likeCount} likes</span>
+
+                <MyButton tip='comments'>
+                    <ChatIcon color='primary' />
+                </MyButton>
+                <span>{commentCount} comments</span>
             </Grid>
         </Grid>
     )
@@ -131,3 +149,5 @@ const mapStateToProps = (state) => ({
 })
 
 export default connect(mapStateToProps, { getScream })(ScreamDialog)
+
+// ダイアログのサイズが大きくスタイルが乱れているため修正

@@ -5,17 +5,13 @@ import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'
-import { useDispatch, useSelector } from "react-redux";
-import { likeScream, unlikeScream } from '../redux/actors/dataActions';
 import MyButton from '../utillity/MyButton';
 import ChatIcon from '@mui/icons-material/Chat';
-import { FavoriteBorder } from '@mui/icons-material';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import DeleteScream from './DeleteScream'
 import ScreamDialog from './ScreamDialog'
+import LikeButton from './LikeButton';
 
 const Scream = (props) => {
-  const dispatch = useDispatch()
   dayjs.extend(relativeTime)
 
   const styles = {
@@ -45,41 +41,7 @@ const Scream = (props) => {
         user:{authenticated, credentials: { handle }}
   } =  props 
 
-  const userState = useSelector((state) => state.user)
-
   // https://atsu-developer.net/270/
-
-  const likedScream = () => {
-    if(userState.likes && userState.likes.find((like) => like.screamId === screamId)) {
-      return true
-    } else return false
-  }
-
-  const like = () => {
-    dispatch(likeScream(screamId))
-  }
-
-  const unlike = () => {
-    dispatch(unlikeScream(screamId))
-  }
-
-  const likeButton = !authenticated ? (
-    <MyButton tip='Like'>
-      <Link to='/login'>
-        <FavoriteBorder color='primary' />
-      </Link>
-    </MyButton>
-  ) : (
-    likedScream() ? (
-      <MyButton tip='Undo like' onClick={unlike}>
-        <FavoriteIcon color='primary' />
-      </MyButton>
-    ) : (
-      <MyButton tip='Like' onClick={like}>
-        <FavoriteBorder color='primary' />
-      </MyButton>
-    )
-  )
 
   const deleteButton = authenticated && userHandle === handle ? (
     <DeleteScream screamId={screamId}/>
@@ -98,7 +60,7 @@ const Scream = (props) => {
             {deleteButton}
           <Typography variant='body2' color='textSecondary'>{dayjs(createdAt).fromNow()}</Typography>
           <Typography variant='body1'>{body}</Typography>
-          {likeButton}
+          <LikeButton screamId={screamId} />
           <span>{likeCount} likes</span>
           <MyButton tip='comments'>
             <ChatIcon color='primary' />
@@ -112,8 +74,6 @@ const Scream = (props) => {
 }
 
 Scream.propTypes = {
-  likeScream: PropTypes.func.isRequired,
-  unlikeScream: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
   scream: PropTypes.object.isRequired,
 }
@@ -122,9 +82,4 @@ const mapStateToProps = (state) => ({
   user: state.user,
 })
 
-const mapActionsToProps = ({
-  likeScream,
-  unlikeScream
-})
-
-export default connect(mapStateToProps, mapActionsToProps)(Scream)
+export default connect(mapStateToProps)(Scream)
