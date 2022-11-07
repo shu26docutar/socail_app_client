@@ -7,11 +7,12 @@ import { Dialog, CircularProgress, DialogContent, Typography, Grid } from '@mui/
 import CloseIcon from '@mui/icons-material/Close';
 import { useDispatch, useSelector, connect } from "react-redux";
 import { UnfoldMore } from '@mui/icons-material';
-import { getScream } from '../../redux/actors/dataActions';
+import { getScream, clearErrors } from '../../redux/actors/dataActions';
 import LikeButton from './LikeButton';
 import ChatIcon from '@mui/icons-material/Chat';
 import Comments from './Comments'
 import { useTheme } from '@mui/material';
+import CommentForm from './CommentForm'
 
 const styles = {
     profileImage: {
@@ -56,7 +57,6 @@ export const ScreamDialog = (props) => {
     } =  props 
 
     const loading = useSelector((state) => state.UI.loading)
-    const screams = useSelector((state) => state.data)
 
     const dialogMarkup = loading ? (
         <div style={styles.spinnerDiv}>
@@ -70,9 +70,9 @@ export const ScreamDialog = (props) => {
 
             <Grid item sm={7}>
                 <Typography
-                    component={Link}
-                    color='primary'
                     variant='h5'
+                    color='primary'
+                    component={Link}
                     to={`/users/${userHandle}`}
                 >
                     @{userHandle}
@@ -85,6 +85,7 @@ export const ScreamDialog = (props) => {
                 </Typography>
 
                 <hr style={theme.invisibleSeparator} />
+
                 <Typography variant='body1'>{ body }</Typography>
 
                 <LikeButton screamId={screamId} />
@@ -93,10 +94,13 @@ export const ScreamDialog = (props) => {
                 <MyButton tip='comments'>
                     <ChatIcon color='primary' />
                 </MyButton>
+
                 <span>{commentCount} comments</span>
             </Grid>
 
             <hr style={theme.invisibleSeparator} />
+            
+            <CommentForm screamId={screamId} />
             <Comments comments={comments} />
         </Grid>
     )
@@ -108,6 +112,7 @@ export const ScreamDialog = (props) => {
 
     const handleClose = () => {
         setOpenState(false)
+        dispatch(clearErrors())
     }
 
     return (
@@ -139,6 +144,7 @@ export const ScreamDialog = (props) => {
 }
 
 ScreamDialog.propTypes = {
+    clearErrors: PropTypes.func.isRequired,
     getScream: PropTypes.func.isRequired,
     screamId: PropTypes.string.isRequired,
     userHandle: PropTypes.string.isRequired,
@@ -151,6 +157,6 @@ const mapStateToProps = (state) => ({
     UI: state.UI
 })
 
-export default connect(mapStateToProps, { getScream })(ScreamDialog)
+export default connect(mapStateToProps, { getScream, clearErrors })(ScreamDialog)
 
 // ダイアログのサイズが大きくスタイルが乱れているため修正

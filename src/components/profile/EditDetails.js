@@ -40,7 +40,9 @@ export const EditDetails = () => {
         handleClose()
     }
 
-    const handleChange = (event) => {
+    const handleChange = (e) => {
+        e.preventDafault()
+
         setBio(bioRef.current.value ? bioRef.current.value : ' ')
         setWebsite(websiteRef ? websiteRef.current.value : '')
         setLocation(locationRef ? locationRef.current.value : '')

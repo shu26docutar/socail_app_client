@@ -7,7 +7,8 @@ const initialStore = {
     confirmPassword: null,
     handle: null,
     general: null,
-    body: null
+    body: null,
+    comment: null
 }
 
 // Viewに関連するStateのReducer
@@ -23,6 +24,7 @@ export default function(state = initialStore, action) {
                 handle: action.payload.handle,
                 general: action.payload.general,
                 body: action.payload.body,
+                comment: action.payload.comment
             }
         case CLEAR_ERRORS:
             return {
@@ -33,7 +35,8 @@ export default function(state = initialStore, action) {
                 confirmPassword: null,
                 handle: null,
                 general: null,
-                body: null
+                body: null,
+                comment: null
             }
         case LOADING_UI:
             return {
