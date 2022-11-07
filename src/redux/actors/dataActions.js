@@ -1,6 +1,20 @@
-import { SET_SCREAMS, SET_SCREAM, LOADING_DATA, LIKE_SCREAM, UNLIKE_SCREAM, DELETE_SCREAM, LOADING_UI, SET_ERRORS, POST_SCREAM, CLEAR_ERRORS, STOP_LOADING_UI, SUBMIT_COMMENT } from '../types';
+import { 
+    SET_SCREAMS, 
+    SET_SCREAM, 
+    LOADING_DATA, 
+    LIKE_SCREAM, 
+    UNLIKE_SCREAM, 
+    DELETE_SCREAM, 
+    LOADING_UI, 
+    SET_ERRORS, 
+    POST_SCREAM, 
+    CLEAR_ERRORS, 
+    STOP_LOADING_UI, 
+    SUBMIT_COMMENT 
+} from '../types';
 import axios from '../../contexts/axios';
 import { requests } from "../../contexts/axiosRequest";
+
 
 // get all screams
 export const getScreams = () => (dispatch) => {

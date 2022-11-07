@@ -7,6 +7,7 @@ import { Button, DialogTitle, DialogActions, Dialog } from '@mui/material';
 import { DeleteOutline } from '@mui/icons-material';
 import { deleteScream } from '../../redux/actors/dataActions';
 
+
 const styles = {
     deleteButton: {
         position: 'absolute',
@@ -35,10 +36,12 @@ export const DeleteScream = (props) => {
             <MyButton tip='Delete Scream' onClick={handleOpen} btnClassName={styles.deleteButton}>
                 <DeleteOutline color='primary' />
             </MyButton>
+
             <Dialog open={openState} onClose={handleClose} fullWidth maxWidth='sm'>
                 <DialogTitle>
                     Are you sure you want to delete this scream?
                 </DialogTitle>
+
                 <DialogActions>
                     <Button onClick={handleClose} color='primary'>
                         Cancel
@@ -48,6 +51,7 @@ export const DeleteScream = (props) => {
                     </Button>
                 </DialogActions>
             </Dialog>
+
         </Fragment>
     )
 }

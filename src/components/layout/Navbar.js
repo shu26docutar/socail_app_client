@@ -9,13 +9,14 @@ import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import { useSelector } from "react-redux";
 import PostScream from '../screams/PostScream';
 
+
 export const Navbar = () => {
   const authenticated = useSelector((state) => state.user.authenticated)
 
   return (
     <AppBar>
       <Toolbar className="nav-container">
-          {authenticated ? (
+          {　authenticated ? (
             <Fragment>
 
               <PostScream />

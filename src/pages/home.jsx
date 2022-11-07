@@ -7,6 +7,7 @@ import { getScreams } from '../redux/actors/dataActions';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from "react-redux";
 
+
 export const Home = () => {
   const dispatch = useDispatch()
 
@@ -23,16 +24,15 @@ export const Home = () => {
   ) : <p>Loading....</p>
 
   return (
-    <>
     <Grid container spacing={16}>
         <Grid item sm={8} xs={12}>
           {resentScreamsMarkup}
         </Grid>
+
         <Grid item sm={4} xs={12} id="profile_item">
           <Profile />
         </Grid>
     </Grid>
-    </>
   )
 }
 

@@ -33,14 +33,16 @@ export const Login = () => {
   }
   
   return (
-    <>
       <Grid container style={theme.form}>
         <Grid item sm />
+
         <Grid item sm >
           <img src={AppIcon} alt='monkey' style={theme.image} />
+
           <Typography variant="h2" style={theme.pageTitle}>
             Login
           </Typography>
+
           <form noValidate onSubmit={handleSubmit}>
             {/* 不要な要素は削除する */}
             <TextField 
@@ -52,7 +54,8 @@ export const Login = () => {
               inputRef={email}
               helperText={uiState.email}
               error={uiState.email ? true: false}
-              fullWidth={true} />
+              fullWidth={true}
+              />
 
             <TextField 
               id='password' 
@@ -64,11 +67,12 @@ export const Login = () => {
               helperText={uiState.password}
               error={uiState.password ? true: false}
               style={theme.textField}
-              fullWidth={true} />
+              fullWidth={true}
+              />
 
             {uiState.general && (
               <Typography variant="body2" style={theme.customError}>
-                {uiState.general}
+                { uiState.general }
               </Typography>
             )}
 
@@ -89,17 +93,16 @@ export const Login = () => {
 
             <small>dont have an account ? sign up <Link to="/signup">here</Link></small>
           </form>
+
         </Grid>
+
         <Grid item sm />
       </Grid>
-    </>
   )
 }
 
 // 受け取ったデータが有効かどうか確認:無効な値がプロパティに与えられた場合、コンソールにアラートが出力
 Login.propTypes = {
-  // おそらくclassesは不要
-  // classes: PropTypes.object.isRequired,
   loginUser: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
   UI: PropTypes.object.isRequired

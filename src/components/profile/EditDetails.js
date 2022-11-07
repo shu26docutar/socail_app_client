@@ -7,6 +7,7 @@ import { editUserDetails } from '../../redux/actors/userActions';
 import { useDispatch, useSelector } from "react-redux";
 import MyButton from '../../utillity/MyButton';
 
+
 // FIXME:~ 空白で投稿した時に空白状態で保存されるようにする
 export const EditDetails = () => {
     const theme = useTheme()
@@ -14,10 +15,10 @@ export const EditDetails = () => {
     const credentials = useSelector((state) => state.user.credentials)
     
     // Dialog Switch
-    const [openState, setOpenState] = useState(false)
-    const [bio, setBio] = useState(credentials.bio)
-    const [website, setWebsite] = useState(credentials.website)
-    const [location, setLocation] = useState(credentials.location)
+    const [　openState, setOpenState　] = useState(false)
+    const [　bio, setBio　] = useState(credentials.bio)
+    const [　website, setWebsite　] = useState(credentials.website)
+    const [　location, setLocation　] = useState(credentials.location)
 
     const bioRef = useRef()
     const websiteRef = useRef()

@@ -11,6 +11,7 @@ import DeleteScream from './DeleteScream'
 import ScreamDialog from './ScreamDialog'
 import LikeButton from './LikeButton';
 
+
 const Scream = (props) => {
   dayjs.extend(relativeTime)
 
@@ -38,7 +39,7 @@ const Scream = (props) => {
             userHandle,
             userImage
         },
-        user:{authenticated, credentials: { handle }}
+        user:{ authenticated, credentials: { handle }}
   } =  props 
 
   // https://atsu-developer.net/270/
@@ -55,18 +56,18 @@ const Scream = (props) => {
           image={userImage}
           title="Profile Image" />
         
-        <CardContent style={styles.content}>
-          <Typography variant='h5' component={Link} to={`/users/${userHandle}`} color="primary">{userHandle}</Typography>
-            {deleteButton}
-          <Typography variant='body2' color='textSecondary'>{dayjs(createdAt).fromNow()}</Typography>
-          <Typography variant='body1'>{body}</Typography>
-          <LikeButton screamId={screamId} />
-          <span>{likeCount} likes</span>
+        <CardContent style={ styles.content }>
+          <Typography variant='h5' component={Link} to={`/users/${ userHandle }`} color="primary">{ userHandle }</Typography>
+            { deleteButton }
+          <Typography variant='body2' color='textSecondary'>{ dayjs(createdAt).fromNow() }</Typography>
+          <Typography variant='body1'>{ body }</Typography>
+          <LikeButton screamId={ screamId } />
+          <span>{ likeCount } likes</span>
           <MyButton tip='comments'>
             <ChatIcon color='primary' />
           </MyButton>
-          <span>{commentCount} comments</span>
-          <ScreamDialog screamId={screamId} userHandle={userHandle} />
+          <span>{ commentCount } comments</span>
+          <ScreamDialog screamId={ screamId } userHandle={ userHandle } />
         </CardContent>
       </Card>
     </div>

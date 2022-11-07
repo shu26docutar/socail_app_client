@@ -18,5 +18,4 @@ AuthRoute.propTypes = {
 }
 
 export default connect(mapStateToProps)(AuthRoute)
-
-// リロードしないと、この処理が実行できないようになっているので要解消
+// Tokenを削除せずにリロードすると、Profileが表示されない原因はバージョンによる影響

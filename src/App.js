@@ -20,7 +20,6 @@ const token = localStorage.FBIdToken
 
 if(token) {
   const decodeToken = jwtDecode(token)
-  console.log(decodeToken)
   
   if(decodeToken.exp * 1000 < Date.now()) {
     store.dispatch(logoutUser())
@@ -38,7 +37,9 @@ function App() {
     <ThemeProvider theme={theme}>
       <Provider store={store}>
         <BrowserRouter>
+
           <Navbar />
+
             <div className='container'>
               <Routes>
                 <Route path="/" element={<Home />} />
@@ -49,6 +50,7 @@ function App() {
                 </Route>
               </Routes>
             </div>
+
         </BrowserRouter>
       </Provider>
     </ThemeProvider>

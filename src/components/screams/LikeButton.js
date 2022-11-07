@@ -7,9 +7,10 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import { likeScream, unlikeScream } from '../../redux/actors/dataActions';
 import { useDispatch, useSelector, connect } from "react-redux";
 
+
 const LikeButton = (props) => {
-    const dispatch = useDispatch()
     const scream = props
+    const dispatch = useDispatch()
     const userState = useSelector((state) => state.user)
 
     const likedScream = () => {

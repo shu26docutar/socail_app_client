@@ -1,4 +1,11 @@
-import { SET_USER, SET_AUTHENTICATED, SET_UNAUTHENTICATED, LOADING_USER, LIKE_SCREAM, UNLIKE_SCREAM } from "../types";
+import { 
+    SET_USER, 
+    SET_AUTHENTICATED, 
+    SET_UNAUTHENTICATED, 
+    LOADING_USER, 
+    LIKE_SCREAM, 
+    UNLIKE_SCREAM 
+} from "../types";
 
 // UserDataに関連するStateのReducer
 // Redux データの初期値

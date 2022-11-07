@@ -31,14 +31,16 @@ export const Signup = () => {
   }
 
   return (
-    <>
       <Grid container style={theme.form}>
         <Grid item sm />
+        
         <Grid item sm >
           <img src={AppIcon} alt='monkey' style={theme.image} />
+
           <Typography variant="h2" style={theme.pageTitle}>
             Signup
           </Typography>
+
           <form noValidate onSubmit={handleSubmit}>
             {/* 不要な要素は削除する */}
             <TextField 
@@ -50,7 +52,8 @@ export const Signup = () => {
               inputRef={email}
               helperText={uiState.email}
               error={uiState.email ? true: false}
-              fullWidth={true} />
+              fullWidth={true} 
+            />
 
             <TextField 
               id='password' 
@@ -62,7 +65,8 @@ export const Signup = () => {
               helperText={uiState.password}
               error={uiState.password ? true: false}
               style={theme.textField}
-              fullWidth={true} />
+              fullWidth={true} 
+            />
 
             <TextField
               id='confirmpassword' 
@@ -74,7 +78,8 @@ export const Signup = () => {
               helperText={uiState.confirmPassword}
               error={uiState.confirmPassword ? true: false}
               style={theme.textField}
-              fullWidth={true} /> 
+              fullWidth={true} 
+            /> 
 
             <TextField 
               id='handle' 
@@ -86,7 +91,8 @@ export const Signup = () => {
               helperText={uiState.handle}
               error={uiState.handle ? true: false}
               style={theme.textField}
-              fullWidth={true} />
+              fullWidth={true} 
+            />
 
             {uiState.general && (
               <Typography variant="body2" style={theme.customError}>
@@ -111,10 +117,12 @@ export const Signup = () => {
 
             <small>already have an account ? log in <Link to="/login">here</Link></small>
           </form>
+
         </Grid>
+
         <Grid item sm />
+
       </Grid>
-    </>
   )
 }
 

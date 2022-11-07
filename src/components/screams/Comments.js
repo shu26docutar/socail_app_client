@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 import { useTheme } from '@mui/material';
 
+
 const styles = {
     commentImage: {
         maxWidth: '100%',
@@ -33,6 +34,7 @@ const Comments = (props) => {
                                 <Grid item sm={2}>
                                     <img src={userImage} alt='comment' style={styles.commentImage} />
                                 </Grid>
+
                                 <Grid item sm={9}>
                                     <div style={styles.commentData}>
                                         <Typography
@@ -43,6 +45,7 @@ const Comments = (props) => {
                                         >
                                             {userHandle}
                                         </Typography>
+
                                         <Typography 
                                             variant='body2'
                                             color='textSecondary'

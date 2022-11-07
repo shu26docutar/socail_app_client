@@ -12,6 +12,7 @@ import { logoutUser, uploadImage } from '../../redux/actors/userActions';
 import EditDetails from './EditDetails';
 import MyButton from '../../utillity/MyButton';
 
+
 const Profile = (props) => {
     const userState = useSelector((state) => state.user)
     const dispatch = useDispatch()
@@ -63,17 +64,19 @@ const Profile = (props) => {
                         <ModeEditIcon color='primary' />
                     </MyButton>
                 </div>
+
                 <hr />
+                
                 <div style={theme.profile.profile_details} id='details'>
-                    <Typography variant='h5' component={Link} to={`/users/${handle}`} color="primary">@{handle}</Typography>
+                    <Typography variant='h5' component={Link} to={`/users/${handle}`} color="primary">@{　handle　}</Typography>
 
                     <hr />
-                        {bio && <Typography variant='body2'color="primary">{bio}</Typography>}
+                        {bio && <Typography variant='body2'color="primary">{　bio　}</Typography>}
                     <hr />
 
                     {location && (
                         <Fragment>
-                            <LocationOn color='primary' /> <span>{location}</span>
+                            <LocationOn color='primary' /> <span>{　location　}</span>
                             <hr />
                         </Fragment>
                     )}
@@ -83,7 +86,7 @@ const Profile = (props) => {
                             <AccessTimeIcon color='primary' />
                             <a href={website} target='_blank' rel='noopener noreferrer'>
                                 {' '}
-                                {website}
+                                {　website　}
                             </a>
                         </Fragment>
                     )}

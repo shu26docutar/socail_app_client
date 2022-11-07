@@ -8,6 +8,7 @@ import MyButton from '../../utillity/MyButton';
 import AddIcon from '@mui/icons-material/Add';
 import CloseIcon from '@mui/icons-material/Close';
 
+
 const styles = {
     submitButton: {
         position: 'relative',
@@ -55,13 +56,17 @@ export const PostScream = () => {
             <MyButton onClick={handleOpen} tip='Post a Scream'>
                 <AddIcon />
             </MyButton>
+
             <Dialog open={openState} onClose={handleClose} fullWidth maxWidth='sm'>
+
                 <MyButton tip='Close' onClick={handleClose} tipClassName={StyleSheet.closeButton}>
                     <CloseIcon />
                 </MyButton>
+
                 <DialogTitle>
                     Post a new scream
                 </DialogTitle>
+
                 <DialogContent>
                     <form onSubmit={handleSubmit}>
                         <TextField 
@@ -92,7 +97,9 @@ export const PostScream = () => {
                         </Button>
                     </form>
                 </DialogContent>
+
             </Dialog>
+
         </Fragment>
     )
 }

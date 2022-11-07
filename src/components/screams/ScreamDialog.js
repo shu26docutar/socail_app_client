@@ -14,6 +14,7 @@ import Comments from './Comments'
 import { useTheme } from '@mui/material';
 import CommentForm from './CommentForm'
 
+
 const styles = {
     profileImage: {
         maxWidth: 200,
@@ -99,7 +100,7 @@ export const ScreamDialog = (props) => {
             </Grid>
 
             <hr style={theme.invisibleSeparator} />
-            
+
             <CommentForm screamId={screamId} />
             <Comments comments={comments} />
         </Grid>
@@ -158,5 +159,4 @@ const mapStateToProps = (state) => ({
 })
 
 export default connect(mapStateToProps, { getScream, clearErrors })(ScreamDialog)
-
 // ダイアログのサイズが大きくスタイルが乱れているため修正
