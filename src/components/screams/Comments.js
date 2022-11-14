@@ -62,6 +62,7 @@ const Comments = (props) => {
                                 </Grid>
                             </Grid>
                         </Grid>
+                        
                         {index !== comments.length -1 && (
                             <hr style={theme.visibleSeparator} />
                         )}

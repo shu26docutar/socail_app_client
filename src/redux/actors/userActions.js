@@ -14,19 +14,19 @@ import { requests } from "../../contexts/axiosRequest";
 // Action：ユーザーがActionInputを行うと下記が発火
 export const loginUser = (userData, navigation) => (dispatch) => {
     // dispatchを使用し、Reducerへアクセス:ReduxStateを更新するように依頼
-    dispatch({ type: LOADING_UI })
+    dispatch(loadingUI())
 
     axios.post(requests.fetchLogin, userData)
         .then((res) => {
             setAuthorizationHeader(res.data.token)
             dispatch(getUserData())
-            dispatch({ type: CLEAR_ERRORS })
+            dispatch(clearError())
             navigation('/')
         })
         .catch((error) => {        
             dispatch({
-            type: SET_ERRORS,
-            payload: error.response.data
+                type: SET_ERRORS,
+                payload: error.response.data
             })
         })
 }
@@ -38,7 +38,7 @@ const setAuthorizationHeader = (token) => {
 }
 
 export const getUserData = () => (dispatch) => {
-    dispatch({ type: LOADING_USER })
+    dispatch(loadingUser())
     axios.get(requests.fetchUser)
         .then((res) => {
             dispatch({
@@ -53,19 +53,19 @@ export const getUserData = () => (dispatch) => {
 
 export const signupUser = (newUserData, navigation) => (dispatch) => {
     // dispatchを使用し、Reducerへアクセス:ReduxStateを更新するように依頼
-    dispatch({ type: LOADING_UI })
+    dispatch(loadingUI())
 
     axios.post(requests.fetchSignup, newUserData)
         .then((res) => {
             setAuthorizationHeader(res.data.token)
             dispatch(getUserData())
-            dispatch({ type: CLEAR_ERRORS })
+            dispatch(clearError())
             navigation('/')
         })
         .catch((error) => {        
             dispatch({
-            type: SET_ERRORS,
-            payload: error.response.data
+                type: SET_ERRORS,
+                payload: error.response.data
             })
         })
 }
@@ -77,7 +77,7 @@ export const logoutUser = () => (dispatch) => {
 }
 
 export const uploadImage = (formData) => (dispatch) => {
-    dispatch({ type: LOADING_USER })
+    dispatch(loadingUser())
 
     axios.post(requests.fetchUploadImage, formData)
         .then(() => {
@@ -87,7 +87,7 @@ export const uploadImage = (formData) => (dispatch) => {
 }
 
 export const editUserDetails = (userDetails) => (dispatch) => {
-    dispatch({ type: LOADING_USER })
+    dispatch(loadingUser())
 
     axios.post(requests.fetchUser, userDetails)
         .then(() => {
@@ -96,4 +96,16 @@ export const editUserDetails = (userDetails) => (dispatch) => {
         .catch((error) => {
             console.log(error)
         })
+}
+
+export const loadingUser = () => (dispatch) => {
+    dispatch({ type: LOADING_USER })
+}
+
+export const loadingUI = () => (dispatch) => {
+    dispatch({ type: LOADING_UI })
+}
+
+export const clearError = () => (dispatch) => {
+    dispatch({ type: CLEAR_ERRORS })
 }

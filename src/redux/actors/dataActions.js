@@ -20,7 +20,7 @@ import { requests } from "../../contexts/axiosRequest";
 
 // get all screams
 export const getScreams = () => (dispatch) => {
-    dispatch({ type: LOADING_DATA })
+    dispatch(loadingData())
 
     axios.get(requests.getScream)
         .then((res) => {
@@ -28,7 +28,7 @@ export const getScreams = () => (dispatch) => {
                 type: SET_SCREAMS,
                 payload: res.data
             })
-            dispatch({ type: CLEAR_ERRORS })
+            dispatch(clearErrors())
         })
         .catch(() => {
             dispatch({
@@ -78,7 +78,7 @@ export const deleteScream = (screamId) => (dispatch) => {
 }
 
 export const postScream = (newScream) => (dispatch) => {
-    dispatch({ type: LOADING_UI })
+    dispatch(loadingUi())
 
     axios.post(requests.fetchCreateScream, newScream)
         .then((res) => {
@@ -90,68 +90,77 @@ export const postScream = (newScream) => (dispatch) => {
         })
         .catch((error) => {        
             dispatch({
-            type: SET_ERRORS,
-            payload: error.response.data
-            })
-        })
-}
-
-export const clearErrors = () => (dispatch) => {
-    dispatch({ type: CLEAR_ERRORS })
-}
-
-export const getScream = (screamId) => (dispatch) => {
-    dispatch({ type: LOADING_UI })
-
-    axios.get(`/scream/${screamId}`)
-        .then((res) => {
-            dispatch({
-                type: SET_SCREAM,
-                payload: res.data
-            })
-            dispatch({ type: STOP_LOADING_UI})
-        })
-        .catch((error) => {
-            console.log(error)
-        })
-}
-
-export const submitComment = (screamId, commentData) => (dispatch) => {
-    axios.post(`/scream/${screamId}/comment`, commentData)
-        .then((res) => {
-            dispatch({
-                type: SUBMIT_COMMENT,
-                payload: res.data
-            })
-            dispatch(clearErrors())
-        })
-        .catch((error) => {
-            dispatch({
                 type: SET_ERRORS,
                 payload: error.response.data
             })
         })
 }
 
-export const getUserData = (userHandle) => (dispatch) => {
-    dispatch({ type: LOADING_DATA })
 
+export const getScream = (screamId) => (dispatch) => {
+    dispatch(loadingUi())
+    
+    axios.get(`/scream/${screamId}`)
+    .then((res) => {
+        dispatch({
+            type: SET_SCREAM,
+            payload: res.data
+        })
+        dispatch({ type: STOP_LOADING_UI})
+    })
+    .catch((error) => {
+        console.log(error)
+    })
+}
+
+export const submitComment = (screamId, commentData) => (dispatch) => {
+    axios.post(`/scream/${screamId}/comment`, commentData)
+    .then((res) => {
+        dispatch({
+            type: SUBMIT_COMMENT,
+            payload: res.data
+        })
+        dispatch(clearErrors())
+    })
+    .catch((error) => {
+        dispatch({
+            type: SET_ERRORS,
+            payload: error.response.data
+        })
+    })
+}
+
+export const getUserData = (userHandle) => (dispatch) => {
+    dispatch(loadingData())
+    
     axios.get(`/user/${userHandle}`)
-        .then((res) => {
-            dispatch({
-                type: SET_SCREAMS,
-                payload: res.data.screams
-            })
-            dispatch({
-                type: SET_USERDETAIL,
-                payload: userHandle
-            })
+    .then((res) => {
+        dispatch({
+            type: SET_SCREAMS,
+            payload: res.data.screams
         })
-        .catch(() => {
-            dispatch({
-                type: SET_SCREAMS,
-                payload: null
-            })
+        dispatch({
+            type: SET_USERDETAIL,
+            payload: userHandle
         })
+    })
+    .catch(() => {
+        dispatch({
+            type: SET_SCREAMS,
+            payload: null
+        })
+    })
     dispatch({ type: STOP_LOADING_DATA })
+}
+
+export const clearErrors = () => (dispatch) => {
+    dispatch({ type: CLEAR_ERRORS })
+}
+
+export const loadingData = () => (dispatch) => {
+    dispatch({ type: LOADING_DATA })
+}
+
+export const loadingUi = () => (dispatch) => {
+    dispatch({ type: LOADING_UI })
 }

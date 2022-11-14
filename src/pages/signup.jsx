@@ -108,6 +108,7 @@ export const Signup = () => {
               disabled={uiState.loading}
             >
               Signup
+
               {uiState.loading && 
                 <CircularProgress size={30} style={theme.progress} />
               }
@@ -115,7 +116,12 @@ export const Signup = () => {
 
             <br />
 
-            <small>already have an account ? log in <Link to="/login">here</Link></small>
+            <small>
+              already have an account ? log in 
+              <Link to="/login">
+                here
+              </Link>
+            </small>
           </form>
 
         </Grid>

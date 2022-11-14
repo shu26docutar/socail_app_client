@@ -10,9 +10,12 @@ import axios from '../contexts/axios';
 
 export const User = () => {
     const dispatch = useDispatch()
-    const [profile, setProfile] = useState({profile: null})
     const userData = useSelector((state) => state.data)
+    // 下は不要かも
     const userHandle = useSelector((state) => state.data.userDetail)
+    const [ profile, setProfile ] = useState({
+                                        profile: null
+                                    })
 
     dispatch(getUserData(userHandle))
 
@@ -61,6 +64,4 @@ const mapStateToProps = (state) => ({
 })
 
 export default connect(mapStateToProps, { getUserData })(User)
-
-// 残りの名前リンクを同様にする
 // 詳細画面から戻った後は、ReduxがTrueのままなためProfile画面がloading状態になったまま

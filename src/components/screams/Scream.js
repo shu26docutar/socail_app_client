@@ -44,8 +44,6 @@ const { scream: {
         user:{ authenticated, credentials: { handle }}
   } =  props 
 
-  // https://atsu-developer.net/270/
-
   const deleteButton = authenticated && userHandle === handle ? (
     <DeleteScream screamId={screamId}/>
   ) : null
@@ -59,16 +57,41 @@ const { scream: {
           title="Profile Image" />
         
         <CardContent style={ styles.content }>
-          <Typography variant='h5' component={Link} to={`/user/${ userHandle }`} color="primary" onClick={() => {dispatch(getUserData(userHandle))}} handle={{user: userHandle}}>{ userHandle }</Typography>
+          <Typography 
+            variant='h5'
+            color="primary" 
+            component={Link}
+            to={`/user/${ userHandle }`}
+            onClick={() => {dispatch(getUserData(userHandle))}}
+          >
+            { userHandle }
+          </Typography>
+
             { deleteButton }
-          <Typography variant='body2' color='textSecondary'>{ dayjs(createdAt).fromNow() }</Typography>
-          <Typography variant='body1'>{ body }</Typography>
+
+          <Typography 
+            variant='body2'
+            color='textSecondary'
+          >
+            { dayjs(createdAt).fromNow() }
+          </Typography>
+
+          <Typography
+            variant='body1'
+          >
+            { body }
+          </Typography>
+
           <LikeButton screamId={ screamId } />
+
           <span>{ likeCount } likes</span>
+
           <MyButton tip='comments'>
             <ChatIcon color='primary' />
           </MyButton>
+
           <span>{ commentCount } comments</span>
+
           <ScreamDialog screamId={ screamId } userHandle={ userHandle } />
         </CardContent>
       </Card>
@@ -86,3 +109,4 @@ const mapStateToProps = (state) => ({
 })
 
 export default connect(mapStateToProps, {getUserData})(Scream)
+// https://atsu-developer.net/270/

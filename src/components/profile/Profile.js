@@ -10,6 +10,7 @@ import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import { logoutUser, uploadImage } from '../../redux/actors/userActions';
 import EditDetails from './EditDetails';
 import MyButton from '../../utillity/MyButton';
+import { getUserData } from '../../redux/actors/dataActions';
 
 
 const Profile = (props) => {
@@ -67,7 +68,7 @@ const Profile = (props) => {
                 <hr />
                 
                 <div style={theme.profile.profile_details} id='details'>
-                    <Typography variant='h5' component={Link} to={`/user/${handle}`} color="primary">@{　handle　}</Typography>
+                    <Typography variant='h5' component={Link} to={`/user/${handle}`} onClick={() => {dispatch(getUserData(handle))}} color="primary">@{　handle　}</Typography>
 
                     <hr />
                         {bio && <Typography variant='body2'color="primary">{　bio　}</Typography>}

@@ -46,6 +46,7 @@ export const DeleteScream = (props) => {
                     <Button onClick={handleClose} color='primary'>
                         Cancel
                     </Button>
+
                     <Button onClick={deleteTarget} color='secondary'>
                         Delete
                     </Button>
@@ -62,5 +63,4 @@ DeleteScream.propTypes = {
 }
 
 export default connect(null, { deleteScream })(DeleteScream)
-
 // データを削除するとコンポーネントのみ残置する現象を突き止める
