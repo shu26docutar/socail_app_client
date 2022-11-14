@@ -5,12 +5,15 @@ import { SET_SCREAMS,
     DELETE_SCREAM, 
     POST_SCREAM, 
     SET_SCREAM, 
-    SUBMIT_COMMENT 
+    SUBMIT_COMMENT,
+    SET_USERDETAIL,
+    STOP_LOADING_DATA
 } from '../types';
 
 const initialState = {
     screams: [],
     scream: [],
+    userDetail: [],
     loading: false
 }
 
@@ -63,6 +66,17 @@ export default function (state = initialState, action) {
                     ...state.scream,
                     comments: [action.payload, ...state.scream.comments]
                 }
+            }
+        case SET_USERDETAIL:
+            return {
+                ...state,
+                userDetail: action.payload,
+                loading: false
+            }
+        case STOP_LOADING_DATA:
+            return {
+                ...state,
+                loading: false
             }
         default:
             return state

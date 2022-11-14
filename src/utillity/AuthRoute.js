@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 const AuthRoute = (props) => {
-
     // コンポーネントを表示させるためには、returnが必要
     return props.authenticated ?  <Navigate to="/" replace /> : <Outlet />
 }

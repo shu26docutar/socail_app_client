@@ -3,16 +3,18 @@ import { Typography, Card, CardMedia, CardContent } from '@mui/material'
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
-import { connect } from 'react-redux';
+import { connect,useDispatch } from 'react-redux';
 import PropTypes from 'prop-types'
 import MyButton from '../../utillity/MyButton';
 import ChatIcon from '@mui/icons-material/Chat';
 import DeleteScream from './DeleteScream'
 import ScreamDialog from './ScreamDialog'
 import LikeButton from './LikeButton';
+import { getUserData } from '../../redux/actors/dataActions';
 
 
 const Scream = (props) => {
+  const dispatch = useDispatch()
   dayjs.extend(relativeTime)
 
   const styles = {
@@ -30,7 +32,7 @@ const Scream = (props) => {
     }
   }
 
-  const { scream: {
+const { scream: {
             body,
             createdAt,
             commentCount,
@@ -57,7 +59,7 @@ const Scream = (props) => {
           title="Profile Image" />
         
         <CardContent style={ styles.content }>
-          <Typography variant='h5' component={Link} to={`/users/${ userHandle }`} color="primary">{ userHandle }</Typography>
+          <Typography variant='h5' component={Link} to={`/user/${ userHandle }`} color="primary" onClick={() => {dispatch(getUserData(userHandle))}} handle={{user: userHandle}}>{ userHandle }</Typography>
             { deleteButton }
           <Typography variant='body2' color='textSecondary'>{ dayjs(createdAt).fromNow() }</Typography>
           <Typography variant='body1'>{ body }</Typography>
@@ -83,4 +85,4 @@ const mapStateToProps = (state) => ({
   user: state.user,
 })
 
-export default connect(mapStateToProps)(Scream)
+export default connect(mapStateToProps, {getUserData})(Scream)

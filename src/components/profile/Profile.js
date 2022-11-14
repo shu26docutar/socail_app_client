@@ -1,9 +1,8 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
-import { connect } from 'react-redux';
 import { Typography, Paper, Button, useTheme } from '@mui/material';
-import { useDispatch, useSelector } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom'
 import { CalendarToday, KeyboardReturn, LocationOn } from '@mui/icons-material';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
@@ -68,7 +67,7 @@ const Profile = (props) => {
                 <hr />
                 
                 <div style={theme.profile.profile_details} id='details'>
-                    <Typography variant='h5' component={Link} to={`/users/${handle}`} color="primary">@{　handle　}</Typography>
+                    <Typography variant='h5' component={Link} to={`/user/${handle}`} color="primary">@{　handle　}</Typography>
 
                     <hr />
                         {bio && <Typography variant='body2'color="primary">{　bio　}</Typography>}

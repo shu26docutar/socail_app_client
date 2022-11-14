@@ -10,7 +10,9 @@ import {
     POST_SCREAM, 
     CLEAR_ERRORS, 
     STOP_LOADING_UI, 
-    SUBMIT_COMMENT 
+    SUBMIT_COMMENT,
+    SET_USERDETAIL,
+    STOP_LOADING_DATA 
 } from '../types';
 import axios from '../../contexts/axios';
 import { requests } from "../../contexts/axiosRequest";
@@ -129,4 +131,27 @@ export const submitComment = (screamId, commentData) => (dispatch) => {
                 payload: error.response.data
             })
         })
+}
+
+export const getUserData = (userHandle) => (dispatch) => {
+    dispatch({ type: LOADING_DATA })
+
+    axios.get(`/user/${userHandle}`)
+        .then((res) => {
+            dispatch({
+                type: SET_SCREAMS,
+                payload: res.data.screams
+            })
+            dispatch({
+                type: SET_USERDETAIL,
+                payload: userHandle
+            })
+        })
+        .catch(() => {
+            dispatch({
+                type: SET_SCREAMS,
+                payload: null
+            })
+        })
+    dispatch({ type: STOP_LOADING_DATA })
 }

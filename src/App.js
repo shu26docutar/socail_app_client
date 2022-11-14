@@ -7,6 +7,7 @@ import AuthRoute from './utillity/AuthRoute';
 import { Navbar } from './components/layout/Navbar';
 import { Home } from './pages/home';
 import { Login }  from './pages/login';
+import { User }  from './pages/user';
 import { Signup } from './pages/signup';
 import { Provider } from 'react-redux';
 import store from './redux/store';
@@ -48,6 +49,9 @@ function App() {
                   <Route path="/login" element={<Login  />} />
                   <Route path="/signup" element={<Signup />} />
                 </Route>
+
+              <Route path="/user/:handle" element={<User />} />
+                
               </Routes>
             </div>
 
