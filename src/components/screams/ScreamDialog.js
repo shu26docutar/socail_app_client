@@ -7,7 +7,7 @@ import { Dialog, CircularProgress, DialogContent, Typography, Grid } from '@mui/
 import CloseIcon from '@mui/icons-material/Close';
 import { useDispatch, useSelector, connect } from "react-redux";
 import { UnfoldMore } from '@mui/icons-material';
-import { getScream, clearErrors } from '../../redux/actors/dataActions';
+import { getScream, clearErrors, getUserData } from '../../redux/actors/dataActions';
 import LikeButton from './LikeButton';
 import ChatIcon from '@mui/icons-material/Chat';
 import Comments from './Comments'
@@ -74,7 +74,8 @@ export const ScreamDialog = (props) => {
                     variant='h5'
                     color='primary'
                     component={Link}
-                    to={`/users/${userHandle}`}
+                    to={`/user/${userHandle}`}
+                    onClick={() => {dispatch(getUserData(userHandle))}}
                 >
                     @{userHandle}
                 </Typography>

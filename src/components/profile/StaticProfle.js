@@ -59,15 +59,30 @@ export const StaticProfle = (props) => {
                 <hr />
                 
                 <div style={styles.profile.profile_details} id='details'>
-                    <Typography variant='h5' component={Link} to={`/user/${handle}`} color="primary">@{　handle　}</Typography>
+                    <Typography
+                        variant='h5'
+                        component={Link}
+                        to={`/user/${handle}`}
+                        color="primary"
+                    >
+                        @{　handle　}
+                    </Typography>
 
                     <hr />
-                        {bio && <Typography variant='body2'color="primary">{　bio　}</Typography>}
+                        { bio && 
+                            <Typography
+                                variant='body2'
+                                color="primary"
+                            >
+                                {　bio　}
+                            </Typography>
+                        }
                     <hr />
 
                     {location && (
                         <Fragment>
-                            <LocationOn color='primary' /> <span>{　location　}</span>
+                            <LocationOn color='primary' />
+                            <span>{　location　}</span>
                             <hr />
                         </Fragment>
                     )}
