@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react';
-import PropTypes from 'prop-types';
 import { Grid, Button, TextField } from '@mui/material';
 import { useDispatch, useSelector, connect } from "react-redux";
 import { useTheme } from '@mui/material';
@@ -60,13 +59,6 @@ const CommentForm = (props) => {
     ) : null
 
     return commentFormMark
-}
-
-CommentForm.propTypes = {
-    submitComment: PropTypes.func.isRequired,
-    screamId: PropTypes.string.isRequired,
-    authenticated: PropTypes.bool.isRequired,
-    UI: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({

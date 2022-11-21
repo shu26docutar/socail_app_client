@@ -1,6 +1,5 @@
 import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import { useDispatch } from "react-redux";
 import MyButton from '../../utillity/MyButton';
 import { Button, DialogTitle, DialogActions, Dialog } from '@mui/material';
@@ -57,10 +56,4 @@ export const DeleteScream = (props) => {
     )
 }
 
-DeleteScream.propTypes = {
-    deleteScream: PropTypes.func.isRequired,
-    screamId: PropTypes.string.isRequired
-}
-
 export default connect(null, { deleteScream })(DeleteScream)
-// データを削除するとコンポーネントのみ残置する現象を突き止める

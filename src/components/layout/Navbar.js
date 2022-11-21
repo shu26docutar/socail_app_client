@@ -2,12 +2,11 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, Button,  } from '@mui/material';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import MyButton from '../../utillity/MyButton';
 import HomeIcon from '@mui/icons-material/Home';
-import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import { useSelector } from "react-redux";
 import PostScream from '../screams/PostScream';
+import Nortifications from './Nortifications'
 
 
 export const Navbar = () => {
@@ -27,9 +26,7 @@ export const Navbar = () => {
                 </MyButton>
               </Link>
 
-              <MyButton tip='Nortifications'>
-                <NotificationsNoneIcon />
-              </MyButton>
+              {/* <Nortifications /> */}
 
             </Fragment>
           ) : (
@@ -42,10 +39,6 @@ export const Navbar = () => {
       </Toolbar>
     </AppBar>
   )
-}
-
-Navbar.propTypes = {
-  authenticated: PropTypes.bool.isRequired
 }
 
 const mapStateToProps = (state) => ({

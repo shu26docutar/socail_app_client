@@ -1,5 +1,4 @@
 import React, { Fragment, useState, useRef } from 'react';
-import PropTypes from 'prop-types';
 import { Button, useTheme, DialogTitle, DialogContent, DialogActions, Dialog, TextField } from '@mui/material';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import { connect } from 'react-redux';
@@ -125,10 +124,6 @@ export const EditDetails = () => {
             </Dialog>
         </Fragment>
     )
-}
-
-EditDetails.propTypes = {
-    editUserDetails: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({

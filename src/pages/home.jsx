@@ -4,7 +4,6 @@ import Scream from '../components/screams/Scream';
 import Profile from '../components/profile/Profile';
 import { connect } from 'react-redux';
 import { getScreams } from '../redux/actors/dataActions';
-import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from "react-redux";
 
 
@@ -34,11 +33,6 @@ export const Home = () => {
         </Grid>
     </Grid>
   )
-}
-
-Home.propTypes = {
-  getScreams: PropTypes.func.isRequired,
-  data: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({

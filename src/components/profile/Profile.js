@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 import { Typography, Paper, Button, useTheme } from '@mui/material';
 import { connect, useDispatch, useSelector } from "react-redux";
@@ -120,12 +119,6 @@ const Profile = (props) => {
     )) : <p>Loading....</p>
 
     return profileMarkup
-}
-
-Profile.propTypes = {
-    user: PropTypes.object.isRequired,
-    logoutUser: PropTypes.func.isRequired,
-    uploadImage: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = (state) => ({

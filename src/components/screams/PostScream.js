@@ -1,5 +1,4 @@
 import React, { Fragment, useState, useRef } from 'react';
-import PropTypes from 'prop-types';
 import { Button, useTheme, DialogTitle, Dialog, TextField, CircularProgress, DialogContent } from '@mui/material';
 import { connect } from 'react-redux';
 import { postScream, clearErrors } from '../../redux/actors/dataActions';
@@ -102,12 +101,6 @@ export const PostScream = () => {
 
         </Fragment>
     )
-}
-
-PostScream.propTypes = {
-    postScream:  PropTypes.func.isRequired,
-    UI: PropTypes.object.isRequired,
-    clearErrors: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({

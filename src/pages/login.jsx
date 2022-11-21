@@ -1,5 +1,4 @@
 import React, { useRef } from 'react';
-import PropTypes from 'prop-types';
 import { Typography, Grid, TextField, Button, CircularProgress, useTheme } from '@mui/material';
 import { Link, useNavigate } from "react-router-dom";
 import AppIcon from '../images/icon.png';
@@ -99,13 +98,6 @@ export const Login = () => {
         <Grid item sm />
       </Grid>
   )
-}
-
-// 受け取ったデータが有効かどうか確認:無効な値がプロパティに与えられた場合、コンソールにアラートが出力
-Login.propTypes = {
-  loginUser: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired,
-  UI: PropTypes.object.isRequired
 }
 
 // 取得したいデータの抽出:抽出したデータを記述

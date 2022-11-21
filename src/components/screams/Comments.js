@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
 import { Typography, Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
@@ -73,9 +72,4 @@ const Comments = (props) => {
     )
 }
 
-Comments.propTypes = {
-    comments: PropTypes.array.isRequired
-}
-
 export default Comments
-// コメントダイアログのレイアウト修正

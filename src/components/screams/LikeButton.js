@@ -1,7 +1,6 @@
 import React from 'react';
 import MyButton from '../../utillity/MyButton';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { FavoriteBorder } from '@mui/icons-material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { likeScream, unlikeScream } from '../../redux/actors/dataActions';
@@ -46,13 +45,6 @@ const LikeButton = (props) => {
     )
 
     return likeButton
-}
-
-LikeButton.propTypes = {
-    likeScream: PropTypes.func.isRequired,
-    unlikeScream: PropTypes.func.isRequired,
-    user: PropTypes.object.isRequired,
-    screamId: PropTypes.string.isRequired,
 }
 
 const mapStateToProps = (state) => ({

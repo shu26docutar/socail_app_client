@@ -1,5 +1,4 @@
 import React, { useRef } from 'react';
-import PropTypes from 'prop-types';
 import { Typography, Grid, TextField, Button, CircularProgress, useTheme } from '@mui/material';
 import { Link, useNavigate } from "react-router-dom";
 import AppIcon from '../images/icon.png';
@@ -130,13 +129,6 @@ export const Signup = () => {
 
       </Grid>
   )
-}
-
-Signup.propTypes = {
-  classes: PropTypes.object.isRequired,
-  signupUser: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired,
-  UI: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({

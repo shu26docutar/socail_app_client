@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 import { Typography, Paper } from '@mui/material';
 import { Link } from 'react-router-dom'
@@ -105,10 +104,6 @@ export const StaticProfle = (props) => {
             </div>
         </Paper>
     )
-}
-
-StaticProfle.propTypes = {
-    profile: PropTypes.object.isRequired
 }
 
 export default StaticProfle
